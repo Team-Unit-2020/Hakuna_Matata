@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Container, Button, Input, InputGroup } from "reactstrap";
 import DashboardNav from '../Navbars/DashboardNav';
 import HomePageNav from '../Navbars/HomePageNav';
-
+import AdvertisementWall from '../Advertisement/AdvertisementWall';
 export default function Home() {
 
     const [user, setUser] = useState();
@@ -10,7 +10,7 @@ export default function Home() {
     useEffect(() => {
         if(checkAuth()){
             var localUser = JSON.parse(localStorage.getItem("user"));
-            console.log("trig")
+            console.log("trig");
             setUser(localUser);
         }
     }, [checkAuth()]);
@@ -49,6 +49,8 @@ export default function Home() {
 
                 </Container>
             </div>
+
+            <AdvertisementWall/>
         </div>
 
     )
