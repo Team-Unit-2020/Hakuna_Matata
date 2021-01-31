@@ -26,21 +26,6 @@ const GetPublicRoutes = () => {
             component: Register,
         },
         {
-            path: "/service-provider/profile",
-            exact: true,
-            component: ServiceProviderProfile,
-        },
-        {
-            path: "/service-provider/dashboard",
-            exact: true,
-            component: ServiceProviderDashboard,
-        },
-        {
-            path: "/service-provider/add-post",
-            exact: true,
-            component: ServiceProviderAddPost,
-        },
-        {
             path: "/confirm/:code",
             exact: true,
             component: Confirm,
