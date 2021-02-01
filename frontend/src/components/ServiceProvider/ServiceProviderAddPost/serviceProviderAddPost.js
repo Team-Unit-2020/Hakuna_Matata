@@ -2,12 +2,22 @@ import React from 'react';
 import { Col, Row, Button, Form, FormGroup, Label, Input, Card } from 'reactstrap';
 import DashboardNav from '../../Navbars/DashboardNav';
 import '../../../CustomStyles/custom.css'
-export default function ServiceProviderAddPost() 
+import {AddPost} from '../../../services/serviceProviderService'
 
-{
-    function onCreateAdvertisementClick(){
-        console.log("hello")
+export default class ServiceProviderAddPost extends React.Component{
+    
+    constructor(props){
+        super(props);
+        this.onCreateAdvertisementClick = this.onCreateAdvertisementClick.bind(this);
     }
+
+    onCreateAdvertisementClick(){
+        const a = 5;
+        AddPost(a).then(res=>{
+            console.log("hello")
+        })
+    }
+    render(){
     return (
 
         <Col className="ml-auto mr-auto" md="4">
@@ -52,7 +62,11 @@ export default function ServiceProviderAddPost()
                         <Input type="checkbox" name="check" id="exampleCheck" />
                         <Label for="exampleCheck" check></Label>
                     </FormGroup>
-                    <Button onClick={() => onCreateAdvertisementClick()}>Submit</Button>
+                    <Button onClick={(e) =>{
+                        e.preventDefault();
+                        this.onCreateAdvertisementClick();
+                    }
+                    }>Submit</Button>
                 </Form>
             
         </Col>
@@ -61,3 +75,5 @@ export default function ServiceProviderAddPost()
 
     )
 }
+}
+
