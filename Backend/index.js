@@ -15,9 +15,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const authRoute = require('./controllers/auth.controller');
 const profileRoute = require('./controllers/profile.controller');
+const serviceProviderRoute = require('./controllers/serviceprovider.controller');
 
 app.use('/auth', authRoute);
 app.use('/user', passport.authenticate('jwt', {session: false}), profileRoute);
+app.use('/service-provider', passport.authenticate('jwt',{session:false}),serviceProviderRoute);
 
 app.listen(port, function () {
       
