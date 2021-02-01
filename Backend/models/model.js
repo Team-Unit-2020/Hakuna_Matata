@@ -32,12 +32,13 @@ const confirmScema = new mongoose.Schema({
 
 module.exports.ConfimUser = mongoose.model('ConfimUser', confirmScema);
 
-const advertisement = new mongoose.Schema({
+const advertisementScema = new mongoose.Schema({
     id: 'string',
     productName: 'string',
     productDescription:'string',
-    availableQty:'number',
+    availableQty: 'number',
+    price: 'number'
     
 });
 
-module.exports.ConfimUser = mongoose.model('ConfimUser', confirmScema);
+module.exports.Advertisement = mongoose.model('Advertisement', advertisementScema);

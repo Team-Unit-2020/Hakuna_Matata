@@ -23,8 +23,8 @@ export default function ServiceProviderProfile() {
             </Col>
             <Col md={4}>
               <FormGroup>
-                <Label for="exampleEmail">Email</Label>
-                <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
+                <Label for="exampleEmail">Name</Label>
+                <Input type="email" name="email" id="exampleEmail" placeholder="enter your email" />
               </FormGroup>
             </Col>
             <Col md={4}>

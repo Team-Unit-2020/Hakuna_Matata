@@ -17,44 +17,36 @@ export default function ServiceProviderAddPost()
                     <Row form>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="exampleEmail">Product Name</Label>
-                                <Input type="email" name="email" id="exampleEmail" placeholder="name placeholder" />
+                                <Label for="productname">Product Name</Label>
+                                <Input type="text" name="productname" id="productname" placeholder="Enter Product Name" />
                             </FormGroup>
                         </Col>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="examplePassword">Catogery</Label>
-                                <Input type="password" name="password" id="examplePassword" placeholder="email placeholder" />
+                                <Label for="productcatogery">Catogery</Label>
+                                <Input type="text" name="productcatogery" id="productcatogery" placeholder="Enter Product Category" />
                             </FormGroup>
                         </Col>
                     </Row>
                     <FormGroup>
-                        <Label for="exampleAddress">Discription about product</Label>
-                        <Input type="text" name="address" id="exampleAddress" placeholder="1234 Main St" />
+                        <Label for="productdiscription">Description about Product</Label>
+                        <Input type="text" name="productdiscription" id="productdiscription" placeholder="Enter a description about the product here" />
                     </FormGroup>
-                    <FormGroup>
-                        <Label for="exampleAddress2">Price range</Label>
-                        <Input type="text" name="address2" id="exampleAddress2" placeholder="Apartment, studio, or floor" />
-                    </FormGroup>
+                    
                     <Row form>
                         <Col md={6}>
                             <FormGroup>
-                                <Label for="exampleCity">Available quntity</Label>
-                                <Input type="text" name="city" id="exampleCity" />
+                                <Label for="productprice">Price </Label>
+                                <Input type="text" name="productprice" id="productprice" placeholder="Enter the price" />
                             </FormGroup>
                         </Col>
-                        <Col md={4}>
+                        <Col md={6}>
                             <FormGroup>
-                                <Label for="exampleState">State</Label>
-                                <Input type="text" name="state" id="exampleState" />
+                                <Label for="productavailableqty">Available Quantity</Label>
+                                <Input type="text" name="productavailableqty" id="productavailableqty" placeholder="Enter the quantity" />
                             </FormGroup>
                         </Col>
-                        <Col md={2}>
-                            <FormGroup>
-                                <Label for="exampleZip">Zip</Label>
-                                <Input type="text" name="zip" id="exampleZip" />
-                            </FormGroup>
-                        </Col>
+        
                     </Row>
                     <FormGroup check>
                         <Input type="checkbox" name="check" id="exampleCheck" />
