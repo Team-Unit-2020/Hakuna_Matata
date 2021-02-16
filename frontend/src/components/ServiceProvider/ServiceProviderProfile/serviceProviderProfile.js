@@ -7,11 +7,11 @@ export default function ServiceProviderProfile() {
 
   return (
     <Col className="ml-auto mr-auto" md="4">
-      <h2 className="welcome-msg">Create Profile</h2>
+      <h1 className="welcome-msg">Create Profile</h1>
       <Card>
         <Form>
           <Row form>
-            <Col md={4}>
+            <Col md={10}>
               <div class="kv-avatar">
                   <div class="file-loading">
                       <input id="avatar-1" name="avatar-1" type="file" required/>
@@ -21,52 +21,40 @@ export default function ServiceProviderProfile() {
                   <small>Select file</small>
               </div>
             </Col>
-            <Col md={4}>
+           
               <FormGroup>
-                <Label for="exampleEmail">Name</Label>
-                <Input type="email" name="email" id="exampleEmail" placeholder="enter your email" />
+                <Label for="examplename">Name</Label>
+                <Input type="name" name="name" id="exampelname" placeholder="enter your name" />
               </FormGroup>
-            </Col>
-            <Col md={4}>
-              <FormGroup>
-                <Label for="examplePassword">Password</Label>
-                <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
-              </FormGroup>
-            </Col>
+            
           </Row>
           <FormGroup>
-            <Label for="exampleAddress">Address</Label>
-            <Input type="text" name="address" id="exampleAddress" placeholder="1234 Main St" />
+            <Label for="exampleemail">Email</Label>
+            <Input type="text" name="email" id="exampleAddress" placeholder="enter your email" />
           </FormGroup>
           <FormGroup>
-            <Label for="exampleAddress2">Address 2</Label>
+            <Label for="exampleAddress2">Address</Label>
             <Input type="text" name="address2" id="exampleAddress2" placeholder="Apartment, studio, or floor" />
           </FormGroup>
           <Row form>
             <Col md={6}>
               <FormGroup>
-                <Label for="exampleCity">City</Label>
-                <Input type="text" name="city" id="exampleCity" />
+                <Label for="exampleCity">Mobile Number</Label>
+                <Input type="number" name="mobilenumber" id="examplemobilenumber" placeholder="enter your mobile number" />
               </FormGroup>
             </Col>
-            <Col md={4}>
+            <Col md={8}>
               <FormGroup>
-                <Label for="exampleState">State</Label>
-                <Input type="text" name="state" id="exampleState" />
+                <Label for="exampleaboutme">About Me</Label>
+                <Input type="text" name="aboutme" id="exampleaboutme" placeholder="description about you" />
               </FormGroup>
             </Col>
             <Col md={2}>
-              <FormGroup>
-                <Label for="exampleZip">Zip</Label>
-                <Input type="text" name="zip" id="exampleZip" />
-              </FormGroup>
+              
             </Col>
           </Row>
-          <FormGroup check>
-            <Input type="checkbox" name="check" id="exampleCheck" />
-            <Label for="exampleCheck" check>Check me out</Label>
-          </FormGroup>
-          <Button>Sign in</Button>
+          
+          <Button>Submit</Button>
         </Form>
       </Card>
     </Col>
