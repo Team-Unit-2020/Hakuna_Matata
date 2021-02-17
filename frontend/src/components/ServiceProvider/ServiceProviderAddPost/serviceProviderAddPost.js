@@ -14,9 +14,10 @@ export default class ServiceProviderAddPost extends React.Component{
         this.onChangeProductPrice=this.onChangeProductPrice.bind(this);
         this.onChangeProductAvailableQty=this.onChangeProductAvailableQty.bind(this);
         this.onCreateAdvertisementClick = this.onCreateAdvertisementClick.bind(this);
-
+        var userId = JSON.parse(localStorage.getItem("user")).id;
         this.state = {
             id: null,
+            userId: this.userId,
             productname: "",
             productcategory : "",
             productdescription: "",

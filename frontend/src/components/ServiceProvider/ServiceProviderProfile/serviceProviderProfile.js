@@ -2,6 +2,8 @@ import React from 'react';
 import { Col, Row, Button, Form, FormGroup, Label, Input, Card } from 'reactstrap';
 import DashboardNav from '../../Navbars/DashboardNav';
 import '../../../CustomStyles/custom.css';
+import ServiceProviderService from '../../../services/service-provider.service';
+import Avatar from "react-avatar-edit";
 
 export default class ServiceProviderProfile extends React.Component {
   constructor(props){
@@ -11,14 +13,24 @@ export default class ServiceProviderProfile extends React.Component {
     this.onChangeServiceProviderAddress=this.onChangeServiceProviderAddress.bind(this);
     this.onChangeServiceProviderMobileNumber=this.onChangeServiceProviderMobileNumber.bind(this);
     this.onChangeServiceProviderAboutMe=this.onChangeServiceProviderAboutMe.bind(this);
-
+    this.onChangeProfilePicture = this.onChangeProfilePicture.bind(this);
+    this.onCrop = this.onCrop.bind(this);
+    var userId = JSON.parse(localStorage.getItem("user")).id;
     this.state ={
+      src:null,
+      userId: this.userId,
+      serviceproviderimage: null,
       serviceprovidername: "",
       serviceprovideremail:"",
       serviceprovideraddress:"",
       serviceprovidermobilenumber:"",
       serviceprovideraboutme:"",
     }
+  }
+  onChangeProfilePicture(e){
+    this.setState({
+      serviceproviderimage: e.target.files[0]
+    });
   }
   onChangeServiceProviderName(e){
     this.setState({
@@ -47,14 +59,22 @@ export default class ServiceProviderProfile extends React.Component {
   }
   onSubmit(){
     var data = {
+      serviceproviderimage: this.state.serviceproviderimage,
       serviceprovidername: this.state.serviceprovidername,
       serviceprovideremail:this.state.serviceprovideremail,
       serviceprovideraddress:this.state.serviceprovideraddress,
       serviceprovidermobilenumber:this.state.serviceprovidermobilenumber,
       serviceprovideraboutme:this.state.serviceprovideraboutme,
     }
-    console.log(data);
-    this.clearAllFields();
+    var userId = JSON.parse(localStorage.getItem("user")).id;
+
+    ServiceProviderService.updateProfile(userId,data)
+    .then(res =>{
+      console.log(res);
+    })
+    .catch(e =>{
+      console.log(e);
+    })
   }
 
   clearAllFields(){
@@ -66,7 +86,12 @@ export default class ServiceProviderProfile extends React.Component {
       serviceprovideraboutme:""
     })
   }
-
+  
+  onCrop(pv) {
+    this.setState({
+      serviceproviderimage: pv
+    });
+  }
 
   render(){
     return (
@@ -75,17 +100,24 @@ export default class ServiceProviderProfile extends React.Component {
         <Card>
           <Form>
             <Row form>
-              <Col md={10}>
-                <div className="kv-avatar">
-                    <div className="file-loading">
-                        <input id="avatar-1" name="avatar-1" type="file" required/>
-                    </div>
-                </div>
-                <div className="kv-avatar-hint">
-                    <small>Select file</small>
-                </div>
+
+              <Col md={6}>
+                  <Avatar
+                    width={200}
+                    height={200}
+                    onCrop={this.onCrop}
+                    src={this.state.src}
+                  />
               </Col>
-             
+              
+        
+              
+              <Col md={6}>
+              <img src={this.state.serviceproviderimage} alt="Preview" />
+              </Col>
+            </Row>
+            <Row form>
+              <Col>
                 <FormGroup>
                   <Label for="serviceprovidername">Name</Label>
                   <Input 
@@ -99,6 +131,7 @@ export default class ServiceProviderProfile extends React.Component {
                   />
                 </FormGroup>
               
+              </Col> 
             </Row>
             <FormGroup>
               <Label for="serviceprovideremail">Email</Label>

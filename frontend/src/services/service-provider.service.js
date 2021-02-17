@@ -7,7 +7,7 @@ class ServiceProviderService{
     }
 
     updateProfile(id,data){
-        sendRequest("put",`${appSettings.backendUrl}/service-provider/profile/${id}`,data);
+        return sendRequest("put",`${appSettings.backendUrl}/service-provider/profile/${id}`,data);
     }
 }
 export default new ServiceProviderService();
