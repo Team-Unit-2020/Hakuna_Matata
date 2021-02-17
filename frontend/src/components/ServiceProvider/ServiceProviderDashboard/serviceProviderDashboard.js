@@ -21,11 +21,11 @@ export default function ServiceProviderDashboard() {
                 <br />
                 <br />
                 <h2 className="welcome-msg">Thank You Join With Us</h2> <br /><br /><br />
-                <div class="row mt-3">
-                    <div class="col-lg-6 sm-6">
+                <div className="row mt-3">
+                    <div className="col-lg-6 sm-6">
                         <button className="btn btn-primary w-50 bold-font" onClick={() => onCreateProfileClick()}>Create Your Profile</button>
                     </div>
-                    <div class="col-lg-6 sm-6">
+                    <div className="col-lg-6 sm-6">
                         <button className="btn btn-primary w-50 bold-font" onClick={() => onAddNewPostClick()}>Add Post</button>
                     </div>
                 </div>
