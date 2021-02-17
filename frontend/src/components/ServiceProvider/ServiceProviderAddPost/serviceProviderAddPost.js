@@ -54,6 +54,7 @@ export default class ServiceProviderAddPost extends React.Component{
 
     onCreateAdvertisementClick(){
         var data = {
+            userId: this.userId,
             productname: this.state.productname,
             productcategory : this.state.productcategory,
             productdescription: this.state.productdescription,

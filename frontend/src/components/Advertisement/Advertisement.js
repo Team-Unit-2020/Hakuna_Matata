@@ -14,7 +14,7 @@ export default function Advertisement(props) {
                     <Col md={8}>
                         <Row>
                             <CardBody>
-                                <CardTitle tag="h3">{props.myprop}</CardTitle>
+                                <CardTitle tag="h3">{props.prodname}</CardTitle>
                                 <CardSubtitle tag="h5" className="mb-2 text-muted">sub title</CardSubtitle>
                                 <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
                                 <Button>Button</Button>
