@@ -2,76 +2,216 @@ import React from 'react';
 import { Col, Row, Button, Form, FormGroup, Label, Input, Card } from 'reactstrap';
 import DashboardNav from '../../Navbars/DashboardNav';
 import '../../../CustomStyles/custom.css';
+import ServiceProviderService from '../../../services/service-provider.service';
+import Avatar from "react-avatar-edit";
 
-export default function ServiceProviderProfile() {
+export default class ServiceProviderProfile extends React.Component {
+  constructor(props){
+    super(props);
+    this.onChangeServiceProviderName=this.onChangeServiceProviderName.bind(this);
+    this.onChangeServiceProviderEmail=this.onChangeServiceProviderEmail.bind(this);
+    this.onChangeServiceProviderAddress=this.onChangeServiceProviderAddress.bind(this);
+    this.onChangeServiceProviderMobileNumber=this.onChangeServiceProviderMobileNumber.bind(this);
+    this.onChangeServiceProviderAboutMe=this.onChangeServiceProviderAboutMe.bind(this);
+    this.onChangeProfilePicture = this.onChangeProfilePicture.bind(this);
+    this.onCrop = this.onCrop.bind(this);
+    var userId = JSON.parse(localStorage.getItem("user")).id;
+    this.state ={
+      src:null,
+      userId: this.userId,
+      serviceproviderId: null,
+      serviceproviderimage: null,
+      serviceprovidername: "",
+      serviceprovideremail:"",
+      serviceprovideraddress:"",
+      serviceprovidermobilenumber:"",
+      serviceprovideraboutme:"",
+    }
+  }
+  onChangeProfilePicture(e){
+    this.setState({
+      serviceproviderimage: e.target.files[0]
+    });
+  }
+  onChangeServiceProviderName(e){
+    this.setState({
+      serviceprovidername: e.target.value
+    });
+  }
+  onChangeServiceProviderEmail(e){
+    this.setState({
+      serviceprovideremail: e.target.value
+    });
+  }
+  onChangeServiceProviderAddress(e){
+    this.setState({
+      serviceprovideraddress: e.target.value
+    });
+  }
+  onChangeServiceProviderMobileNumber(e){
+    this.setState({
+      serviceprovidermobilenumber: e.target.value
+    });
+  }
+  onChangeServiceProviderAboutMe(e){
+    this.setState({
+      serviceprovideraboutme:e.target.value
+    });
+  }
+  onSubmit(){
+    var data = {
+      userId: this.state.userId,
+      profileimage: this.state.serviceproviderimage,
+      name: this.state.serviceprovidername,
+      email:this.state.serviceprovideremail,
+      address:this.state.serviceprovideraddress,
+      mobilenumber:this.state.serviceprovidermobilenumber,
+      aboutme:this.state.serviceprovideraboutme,
+    }
 
-  return (
-    <Col className="ml-auto mr-auto" md="4">
-      <h2 className="welcome-msg">Create Profile</h2>
-      <Card>
-        <Form>
-          <Row form>
-            <Col md={4}>
-              <div class="kv-avatar">
-                  <div class="file-loading">
-                      <input id="avatar-1" name="avatar-1" type="file" required/>
-                  </div>
-              </div>
-              <div class="kv-avatar-hint">
-                  <small>Select file</small>
-              </div>
-            </Col>
-            <Col md={4}>
-              <FormGroup>
-                <Label for="exampleEmail">Email</Label>
-                <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
-              </FormGroup>
-            </Col>
-            <Col md={4}>
-              <FormGroup>
-                <Label for="examplePassword">Password</Label>
-                <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
-              </FormGroup>
-            </Col>
-          </Row>
-          <FormGroup>
-            <Label for="exampleAddress">Address</Label>
-            <Input type="text" name="address" id="exampleAddress" placeholder="1234 Main St" />
-          </FormGroup>
-          <FormGroup>
-            <Label for="exampleAddress2">Address 2</Label>
-            <Input type="text" name="address2" id="exampleAddress2" placeholder="Apartment, studio, or floor" />
-          </FormGroup>
-          <Row form>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="exampleCity">City</Label>
-                <Input type="text" name="city" id="exampleCity" />
-              </FormGroup>
-            </Col>
-            <Col md={4}>
-              <FormGroup>
-                <Label for="exampleState">State</Label>
-                <Input type="text" name="state" id="exampleState" />
-              </FormGroup>
-            </Col>
-            <Col md={2}>
-              <FormGroup>
-                <Label for="exampleZip">Zip</Label>
-                <Input type="text" name="zip" id="exampleZip" />
-              </FormGroup>
-            </Col>
-          </Row>
-          <FormGroup check>
-            <Input type="checkbox" name="check" id="exampleCheck" />
-            <Label for="exampleCheck" check>Check me out</Label>
-          </FormGroup>
-          <Button>Sign in</Button>
-        </Form>
-      </Card>
-    </Col>
+    ServiceProviderService.addProfile(data)
+    .then(res =>{
+      console.log(res);
+      this.setState({
+        id: res.body.id
+      })
+      window.alert("Submited Sucessfully")
+    })
+    .catch(e =>{
+      console.log(e);
+    })
+  }
 
+  clearAllFields(){
+    this.setState({
+      serviceprovidername: "",
+      serviceprovideremail:"",
+      serviceprovideraddress:"",
+      serviceprovidermobilenumber:"",
+      serviceprovideraboutme:""
+    })
+  }
+  
+  onCrop(pv) {
+    this.setState({
+      serviceproviderimage: pv
+    });
+  }
 
+  render(){
+    return (
+      <Col className="ml-auto mr-auto" md="4">
+        <h1 className="welcome-msg" hidden={this.state.id != null}> Create Profile </h1>
+        <h1 className="welcome-msg" hidden={this.state.id == null}> Update Profile </h1>
+        <Card>
+          <Form>
+            <Row form>
 
-  )
+              <Col md={6}>
+                  <Avatar
+                    width={200}
+                    height={200}
+                    onCrop={this.onCrop}
+                    src={this.state.src}
+                  />
+              </Col>
+              
+        
+              
+              <Col md={6}>
+              <img src={this.state.serviceproviderimage} alt="Preview" />
+              </Col>
+            </Row>
+            <Row form>
+              <Col>
+                <FormGroup>
+                  <Label for="serviceprovidername">Name</Label>
+                  <Input 
+                  type="name"
+                  name="serviceprovidername" 
+                  id="serviceprovidername" 
+                  required
+                  placeholder="enter your name" 
+                  value = {this.state.serviceprovidername}
+                  onChange = {this.onChangeServiceProviderName}
+                  />
+                </FormGroup>
+              
+              </Col> 
+            </Row>
+            <FormGroup>
+              <Label for="serviceprovideremail">Email</Label>
+              <Input 
+              type="email" 
+              name="serviceprovideremail"
+              id="serviceprovideremail"
+              required
+              placeholder="enter your email"
+              value = {this.state.onChangeServiceProviderEmail}
+              onChange = {this.onChangeServiceProviderEmail}
+
+                 />
+            </FormGroup>
+            <FormGroup>
+              <Label for="serviceprovideraddress">Address</Label>
+              <Input
+              type="text" 
+              name="serviceprovideraddress"
+              id="serviceprovideraddress"
+              required
+              placeholder="Apartment, studio, or floor"
+              value = {this.state.onChangeServiceProviderAddress}
+              onChange = {this.onChangeServiceProviderAddress}
+
+               />
+            </FormGroup>
+            <Row form>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="serviceprovidermobilenumber">Mobile Number</Label>
+                  <Input
+                  type="text" 
+                  name="serviceprovidermobilenumber"
+                  id="serviceprovidermobilenumber"
+                  required
+                  placeholder="enter your mobile number" 
+                  value = {this.state.onChangeServiceProviderMobileNumber}
+                  onChange = {this.onChangeServiceProviderMobileNumber}
+
+                     />
+                </FormGroup>
+              </Col>
+              <Col md={8}>
+                <FormGroup>
+                  <Label for="serviceprovideraboutme">About Me</Label>
+                  <Input
+                  type="text" 
+                  name="serviceprovideraboutme"
+                  id="serviceprovideraboutme" 
+                  required
+                  placeholder="description about you"
+                  value = {this.state.onChangeServiceProviderAboutMe}
+                  onChange = {this.onChangeServiceProviderAboutMe}
+                  
+                  />
+                </FormGroup>
+              </Col>
+              <Col md={2}>
+                
+              </Col>
+            </Row>
+            
+            <Button
+            onClick={ (e)=>{
+              e.preventDefault();
+              this.onSubmit();
+            }
+            }
+            >Submit</Button>
+          </Form>
+        </Card>
+      </Col>
+    )
+  }
+  
 }
