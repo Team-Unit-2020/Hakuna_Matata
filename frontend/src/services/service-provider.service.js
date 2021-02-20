@@ -8,8 +8,8 @@ class ServiceProviderService{
     getAllAdvertisements(){
         return sendRequest("get", `${appSettings.backendUrl}/service-provider/advertisement/all`);
     }
-    updateProfile(id,data){
-        return sendRequest("put",`${appSettings.backendUrl}/service-provider/profile/${id}`,data);
+    addProfile(data){
+        return sendRequest("post",`${appSettings.backendUrl}/service-provider/profile/new`,data);
     }
 }
 export default new ServiceProviderService();

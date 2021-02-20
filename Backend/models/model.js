@@ -32,12 +32,29 @@ const confirmScema = new mongoose.Schema({
 
 module.exports.ConfimUser = mongoose.model('ConfimUser', confirmScema);
 
+const serviceProviderProfileSchema = new mongoose.Schema({
+    id: 'string',
+    name: 'string',
+    email: 'string',
+    address: 'string',
+    mobilenumber:'string',
+    aboutme: 'string',
+    userId: 'string',
+    profilepic:{
+        data: Buffer,
+        contentType: String
+    }
+})
+module.exports.ServiceProviderProfile = mongoose.model('ServiceProviderProfile', serviceProviderProfileSchema);
+
 const advertisementScema = new mongoose.Schema({
     id: 'string',
-    productName: 'string',
-    productDescription:'string',
+    name: 'string',
+    description:'string',
+    catergory:'string',
     availableQty: 'number',
-    price: 'number'
+    price: 'number',
+    serviceProviderId: 'string'
     
 });
 

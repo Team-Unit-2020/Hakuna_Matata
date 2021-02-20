@@ -19,6 +19,7 @@ export default class ServiceProviderProfile extends React.Component {
     this.state ={
       src:null,
       userId: this.userId,
+      serviceproviderId: null,
       serviceproviderimage: null,
       serviceprovidername: "",
       serviceprovideremail:"",
@@ -59,18 +60,22 @@ export default class ServiceProviderProfile extends React.Component {
   }
   onSubmit(){
     var data = {
-      serviceproviderimage: this.state.serviceproviderimage,
-      serviceprovidername: this.state.serviceprovidername,
-      serviceprovideremail:this.state.serviceprovideremail,
-      serviceprovideraddress:this.state.serviceprovideraddress,
-      serviceprovidermobilenumber:this.state.serviceprovidermobilenumber,
-      serviceprovideraboutme:this.state.serviceprovideraboutme,
+      userId: this.state.userId,
+      profileimage: this.state.serviceproviderimage,
+      name: this.state.serviceprovidername,
+      email:this.state.serviceprovideremail,
+      address:this.state.serviceprovideraddress,
+      mobilenumber:this.state.serviceprovidermobilenumber,
+      aboutme:this.state.serviceprovideraboutme,
     }
-    var userId = JSON.parse(localStorage.getItem("user")).id;
 
-    ServiceProviderService.updateProfile(userId,data)
+    ServiceProviderService.addProfile(data)
     .then(res =>{
       console.log(res);
+      this.setState({
+        id: res.body.id
+      })
+      window.alert("Submited Sucessfully")
     })
     .catch(e =>{
       console.log(e);
@@ -96,7 +101,8 @@ export default class ServiceProviderProfile extends React.Component {
   render(){
     return (
       <Col className="ml-auto mr-auto" md="4">
-        <h1 className="welcome-msg">Create Profile</h1>
+        <h1 className="welcome-msg" hidden={this.state.id != null}> Create Profile </h1>
+        <h1 className="welcome-msg" hidden={this.state.id == null}> Update Profile </h1>
         <Card>
           <Form>
             <Row form>
