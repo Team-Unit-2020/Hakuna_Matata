@@ -1,21 +1,56 @@
-import React, {useState, useEffect} from 'react'
-import { Container, Button, Input, InputGroup } from "reactstrap";
-import DashboardNav from '../Navbars/DashboardNav';
-import HomePageNav from '../Navbars/HomePageNav';
+import React, { useState, useEffect, useRef } from 'react'
+import { Container, Button, Input, InputGroup, Nav, NavItem, NavLink, UncontrolledTooltip } from "reactstrap";
+import { getAllAdvertisements, getAdvertisementbyPlace, getAdvertisementbyCategory } from '../../services/advertisementService';
+import { getHomeIcons } from '../../services/dynamicLoadingService';
+import DashboardNav from '../Common/Navbars/DashboardNav';
+import HomePageNav from '../Common/Navbars/HomePageNav';
 import AdvertisementWall from '../Advertisement/AdvertisementWall';
+import AdCard from './AdCard';
 export default function Home() {
 
     const [user, setUser] = useState();
+    const [pills, setPills] = useState("");
+    const [searchText, setSearchText] = useState("");
+    const [homeIcons, setHomeIcons] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [allAds, setAllAds] = useState([]);
+    const serviceSectionRef = useRef(null)
+
     const checkAuth = () => localStorage.getItem("access_token") ? true : false;
     useEffect(() => {
         if(checkAuth()){
             var localUser = JSON.parse(localStorage.getItem("user"));
-            console.log("trig");
             setUser(localUser);
         }
-    }, [checkAuth()]);
+    }, []);
 
-    
+    useEffect(() => {
+        getHomeIcons().then(result => {
+            setHomeIcons(result.data);
+        }).finally(() => {
+            setLoading(false)
+        })
+
+        getAllAdvertisements().then(ads => {
+            setAllAds(ads.ads)
+        })
+    }, []);
+
+    const searchBasedOnType = async () => {
+        if (searchText) {
+            console.log(pills)
+            if (!pills) {
+                let ads = await getAdvertisementbyPlace(searchText);
+                setAllAds(ads.ads);
+            } else {
+                let ads = await getAdvertisementbyCategory(pills, searchText);
+                setAllAds(ads.ads)
+            }
+            serviceSectionRef.current.scrollIntoView();
+        }
+    }
+
+
 
     return (
         <div>
@@ -25,9 +60,64 @@ export default function Home() {
                     className="page-header-image"
                     style={{
                         backgroundImage: "url(" + require("../../assets/img/header.jpg") + ")",
+                        backgroundRepeat: "repeat-x"
                     }}
                 ></div>
-                <Container style={{ marginTop: '20%' }}>
+                <Container style={{ marginTop: '10%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Nav
+                        className="nav-pills-info nav-pills-just-icons"
+                        pills
+                        role="tablist"
+                    >
+                        {!loading && homeIcons.map(icon => (<>
+                            <NavItem id={icon.name}>
+                                <NavLink
+                                    className={pills === icon.name ? "active" : ""}
+                                    href="#pablo"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setPills(icon.name);
+                                    }}
+                                >
+                                    <i style={{ color: 'white' }} class={icon.icon}></i>
+                                </NavLink>
+                            </NavItem>
+                            <UncontrolledTooltip
+                                delay={0}
+                                placement="bottom"
+                                target={icon.name}
+                            >
+                                {icon.toolTip}
+                            </UncontrolledTooltip>
+                        </>))}
+                    </Nav>
+                </Container>
+
+                <Container>
+                    <div className="content-center brand">
+                        <InputGroup>
+                            <Input
+                                className="form-control-success form-control-lg"
+                                placeholder="Where..."
+                                type="text"
+                                onChange={(e) => setSearchText(e.target.value)}
+                            ></Input>
+                        </InputGroup>
+                        <div className="col text-center">
+                            <Button
+                                className="btn-round btn-white"
+                                color="info"
+                                size="lg"
+                                onClick={searchBasedOnType}
+                            >
+                                <i className="now-ui-icons ui-1_zoom-bold"></i> Search
+                            </Button>
+                        </div>
+                    </div>
+
+                </Container>
+
+                {/* <Container style={{ marginTop: '20%'}}>
                     <div className="content-center brand">
                         <InputGroup>
                             <Input
@@ -47,11 +137,13 @@ export default function Home() {
                         </div>
                     </div>
 
-                </Container>
+                </Container> */}
             </div>
 
             <AdvertisementWall/>
         </div>
+        
 
     )
+    
 }

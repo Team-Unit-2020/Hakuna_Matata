@@ -16,7 +16,7 @@ import {
     Alert
 } from "reactstrap";
 import { validatePasswordResetLink, resetPasswordWithCode } from '../../services/userService';
-import HomePageNav from '../Navbars/HomePageNav';
+import HomePageNav from '../Common/Navbars/HomePageNav';
 import { Link } from "react-router-dom";
 
 export default function PasswordReset(props) {
@@ -55,7 +55,7 @@ export default function PasswordReset(props) {
         }).finally(() => {
             setPending(false);
         });
-    }, [])
+    }, [props.match.params.code])
 
     const resetPassowrd = () => {
         setError("");

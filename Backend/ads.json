@@ -1,0 +1,159 @@
+[
+    {
+        "id": "61f63fcf-18c6-4b1d-a60a-159872ad855f",
+        "title": "Birthday Cakes",
+        "body": "Did you ever wonder how people get those beautiful endless finishes in their photos? White and bright shots of their products? This is how (or, at least it is an inexpensive diy substitute). By taking photos inside a box that diffuses natural light from all sides, you can remove shadows and give a white, magazine-like",
+        "location": {
+            "text": "moratuwa",
+            "lat": 6.7881,
+            "lan": 79.8913
+        },
+        "keywords": [
+            "Cakes",
+            "Birthday",
+            "Moratuwa"
+        ],
+        "images": [
+            "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2009/4/5/1/IG1C17_30946_s4x3.jpg.rend.hgtvcom.826.620.suffix/1433541424559.jpeg",
+            "https://livforcake.com/wp-content/uploads/2017/07/black-forest-cake-thumb-500x500.jpg"
+        ],
+        "category": "Cakes",
+        "isActive": true,
+        "serviceProvider": {
+            "name": "Royal Cakes",
+            "phoneNumber": [
+                "0112748389",
+                "0713679278"
+            ],
+            "email": "royalcakes@gmail.com",
+            "memberSince": "Aug, 2019"
+        }
+    },
+    {
+        "id": "5128118a-ebff-4e6b-991b-ca8562c9c931",
+        "title": "Wedding Cakes in Kollupitiya",
+        "body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+        "location": {
+            "text": "kollupitiya",
+            "lat": 6.7881,
+            "lan": 79.8913
+        },
+        "keywords": [
+            "Wedding",
+            "Cakes",
+            "Marry"
+        ],
+        "images": [
+            "http://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max",
+            "https://handletheheat.com/wp-content/uploads/2015/03/Best-Birthday-Cake-with-milk-chocolate-buttercream-SQUARE.jpg"
+        ],
+        "category": "Cakes",
+        "isActive": true,
+        "serviceProvider": {
+            "name": "Downtown Confectionaries",
+            "phoneNumber": [
+                "0112744389",
+                "0713674578"
+            ],
+            "email": "info@downtown.com",
+            "memberSince": "Mar, 2020"
+        }
+    },
+    {
+        "id": "607d5b95-ba43-49a5-9825-6e4ec935eca7",
+        "title": "We have solutions for every your cake needs",
+        "body": "Did you ever wonder how people get those beautiful endless finishes in their photos? White and bright shots of their products? This is how (or, at least it is an inexpensive diy substitute). By taking photos inside a box that diffuses natural light from all sides, you can remove shadows and give a white, magazine-like",
+        "location": {
+            "text": "moratuwa",
+            "lat": 6.7881,
+            "lan": 79.8913
+        },
+        "keywords": [
+            "Cakes",
+            "Birthday",
+            "Going away",
+            "Moratuwa"
+        ],
+        "images": [
+            "https://upload.wikimedia.org/wikipedia/commons/0/04/Pound_layer_cake.jpg",
+            "https://imgmedia.lbb.in/media/2019/08/5d67bf1f4f273c34a34de7dd_1567080223091.jpg"
+        ],
+        "category": "Cakes",
+        "isActive": true,
+        "serviceProvider": {
+            "name": "iBride Cakes",
+            "phoneNumber": [
+                "0112748389",
+                "0713679278"
+            ],
+            "email": "ibride@gmail.com",
+            "memberSince": "Aug, 2020"
+        }
+    },
+    {
+        "id": "5c70e4de-988d-424d-99e9-041011975022",
+        "title": "Best place for your wedding",
+        "body": "Looking for a place to stay in Negombo? Then look no further than Avenra Garden Hotel, a luxury small hotel that brings the best of Negombo to your doorstep. Rooms at Avenra Garden Hotel provide air conditioning, and guests can stay connected with free wifi. In addition, while staying at Avenra Garden Hotel guests have access to room service. You can also enjoy a pool and free breakfast. Need a place to park? Free parking is available at Avenra Garden Hotel. For those interested in checking out popular landmarks while visiting Negombo, Avenra Garden Hotel is located a short distance from Angurukaramulla Temple (0.5 mi) and Abhayasekararama Temple (0.5 mi). If you’re looking for a Chinese restaurant, consider a visit to Kreeptow Lounge & Restaurant, Sea Joy Restaurant, or Seafood Club, which are all conveniently located a short distance from Avenra Garden Hotel. We’re sure you’ll enjoy your stay at Avenra Garden Hotel as you experience everything Negombo has to offer.",
+        "location": {
+            "text": "moratuwa",
+            "lat": 7.2175845,
+            "lan": 79.85322
+        },
+        "keywords": [
+            "Places",
+            "Venues",
+            "Negambo",
+            "Banquets",
+            "Foods"
+        ],
+        "images": [
+            "https://cf.bstatic.com/images/hotel/max1024x768/183/18365181.jpg",
+            "https://lh3.googleusercontent.com/proxy/3Rz31oy-dvoNoXLM395hBYR4SCKAYwmmVfRL4rUlY3ds8x9ZFAkMmTGsgiFXhm_ji_RvN7n-wR82TdWRHwn91r8Zxb6wrdmYOzNeCC_BCOk0wlzRL0SUOVCCb7Vupbpkcw",
+            "https://media-cdn.tripadvisor.com/media/photo-s/05/4d/a2/bc/one-of-many-weddings.jpg",
+            "https://a.otcdn.com/imglib/hotelfotos/8/255/hotel-avenra-garden-negombo-023.jpg"
+        ],
+        "category": "Places",
+        "isActive": true,
+        "serviceProvider": {
+            "name": "Avenra Garden (PVT) Ltd",
+            "phoneNumber": [
+                "0312 228 000"
+            ],
+            "email": "info@avenragardenhotel.com",
+            "memberSince": "Aug, 2020"
+        }
+    },
+    {
+        "id": "f47f7524-1b50-44d3-bc1e-7e86176971a4",
+        "title": "Top place for your event in Ruwanpura",
+        "body": "Hotel located between Ratnapura and Pelmadulla. Easy access and parking available. Quiet surroundings. Washrooms in better quality. Had Lunch, Buffet around 2:30 PM. Excellent taste and quality. 540 LKR per person as at May 2015. Good price for quality food. Cakes and Pastries are also available",
+        "location": {
+            "text": "Lellopitiya, Rathnapura",
+            "lat": 6.6570994,
+            "lan": 80.4859827
+        },
+        "keywords": [
+            "Places",
+            "Venues",
+            "Negambo",
+            "Banquets",
+            "Foods"
+        ],
+        "images": [
+            "https://media-cdn.tripadvisor.com/media/photo-s/05/a4/7d/db/silver-ray.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-s/05/a4/82/97/sliver-ray.jpg",
+            "https://pbs.twimg.com/media/CwJ58fjVYAImkfV.jpg",
+            "https://i1.wp.com/wiwaha.com/wp-content/uploads/2019/07/621940_274017789366494_529666877_o.jpg"
+        ],
+        "category": "Places",
+        "isActive": true,
+        "serviceProvider": {
+            "name": "Silver Ray (PVT) Ltd",
+            "phoneNumber": [
+                "0452 274 764"
+            ],
+            "email": "info@silvereay.com",
+            "memberSince": "Aug, 2020"
+        }
+    }
+]

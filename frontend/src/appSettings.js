@@ -6,6 +6,7 @@ export const getSetting = (key) => {
 
 
 export const appSettings = {
-  backendUrl: getSetting("REACT_APP_BACKEND_API")
+  backendUrl: getSetting("REACT_APP_BACKEND_API"),
+  googleMapAPIKey: getSetting("REACT_APP_GOOGLEMAP_APP_KEY")
 };
 

@@ -16,7 +16,7 @@ import {
     Alert
 } from "reactstrap";
 import { sendPasswordResetLink, authenticateUser } from '../../services/userService';
-import HomePageNav from '../Navbars/HomePageNav';
+import HomePageNav from '../Common/Navbars/HomePageNav';
 import {useDispatch} from 'react-redux'
 import {setUserFromId} from '../../store/user/userActions'
 
@@ -98,7 +98,7 @@ export default function Login() {
                     dispatch(setUserFromId(res.id));
                     localStorage.setItem("access_token", res.access_token);
                     localStorage.setItem("user", JSON.stringify(res.user));
-                    history.push("/dashboard");
+                    history.push("/");
                 }).catch(err => {
                     setError(err.message);
                 }).finally(() => {

@@ -16,10 +16,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const authRoute = require('./controllers/auth.controller');
 const profileRoute = require('./controllers/profile.controller');
 const serviceProviderRoute = require('./controllers/serviceprovider.controller');
+const dynamicRoute = require('./controllers/dynamic.controller');
+const adsRoute = require('./controllers/advertisement.controller');
+const orderRoute = require('./controllers/order.controller');
 
 app.use('/auth', authRoute);
 app.use('/user', passport.authenticate('jwt', {session: false}), profileRoute);
 app.use('/service-provider', serviceProviderRoute);
+app.use('/service-provider/services', adsRoute);
+app.use('/dynamic', dynamicRoute);
+app.use('/order', passport.authenticate('jwt', {session: false}), orderRoute);
 
 app.listen(port, function () {  
     console.log("Listening to Port " + port);
