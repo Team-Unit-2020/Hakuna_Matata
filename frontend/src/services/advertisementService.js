@@ -12,3 +12,6 @@ export const getAdvertisementbyPlace = (place) =>
 
 export const getAdvertisementbyCategory = (category, location) =>
     sendRequest("get", `${appSettings.backendUrl}/service-provider/services/search/byCategoryAndLocation/${category}/${location}`, null)
+
+export const addAdvertisementToFavourites = (userId, adId) =>
+    sendRequest("get", `${appSettings.backendUrl}/service-provider/services/add/favourites/user/${userId}/ad/${adId}`, null);

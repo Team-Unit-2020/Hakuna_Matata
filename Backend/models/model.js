@@ -20,7 +20,8 @@ const userSchema = new mongoose.Schema({
     active: {
         type: Boolean,
         default: false
-    }
+    },
+    favourites: [String]
 })
 
 module.exports.User = mongoose.model('User', userSchema);

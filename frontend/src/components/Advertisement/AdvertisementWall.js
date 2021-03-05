@@ -29,8 +29,10 @@ export default class AdvertisementWall extends React.Component {
             console.log(e);
         });
     }
+
     render(){
         const { adsList } = this.state;
+        console.log(adsList)
         return (
             <div>
     
@@ -40,7 +42,7 @@ export default class AdvertisementWall extends React.Component {
                            
                             <li
                             key ={index}>
-                                <Advertisement prodname = {ad.name}/>
+                                <Advertisement key={index} ad={ad}/>
 
                             </li>
                

@@ -16,14 +16,15 @@ router.get("/:id", (req, res) => {
                 phone: user.phone,
                 address: user.address,
                 dob: user.dob,
-                active: user.active
+                active: user.active,
+                favourites: user.favourites
             };
         }
 
         return res.json({ status: 200, user: user });
     })
 })
-outer.put("/edit/profile/:id", (req, res) => {
+router.put("/edit/profile/:id", (req, res) => {
 
     if (!req.params.id) return res.json({ status: 503, message: "Invalid Request" });
 

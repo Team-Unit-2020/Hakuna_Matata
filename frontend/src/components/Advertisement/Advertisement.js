@@ -1,8 +1,25 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button, Col, Row } from 'reactstrap';
 import logo from './img-1.jpg';
-import '../../CustomStyles/custom.css'
+import '../../CustomStyles/custom.css';
+import { addAdvertisementToFavourites } from '../../services/advertisementService';
+
 export default function Advertisement(props) {
+
+    const [user, setUser] = useState();
+    const checkAuth = () => localStorage.getItem("access_token") ? true : false;
+
+    let addtoFavouites = async () => {
+        let addedToFavourites = await addAdvertisementToFavourites(user.id, props.ad.id);
+        console.log(addedToFavourites)
+    }
+
+    useEffect(() => {
+        if (checkAuth()) {
+            var localUser = JSON.parse(localStorage.getItem("user"));
+            setUser(localUser);
+        }
+    }, [checkAuth()]);
 
     return (
         <div>
@@ -14,10 +31,13 @@ export default function Advertisement(props) {
                     <Col md={8}>
                         <Row>
                             <CardBody>
-                                <CardTitle tag="h3">{props.prodname}</CardTitle>
-                                <CardSubtitle tag="h5" className="mb-2 text-muted">sub title</CardSubtitle>
-                                <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+                                <CardTitle tag="h3">{props.ad.name}</CardTitle>
+                                <CardSubtitle tag="h5" className="mb-2 text-muted">Price: Rs.{props.ad.price} | Quentity: {props.ad.availableQty}</CardSubtitle>
+                                <CardText>{props.ad.description}</CardText>
                                 <Button>Button</Button>
+                                {checkAuth() && (
+                                    <Button onClick={addtoFavouites}>Add to Favourites</Button>
+                                )}
                             </CardBody>
                         </Row>
                     </Col>

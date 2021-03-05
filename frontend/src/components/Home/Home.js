@@ -31,9 +31,9 @@ export default function Home() {
             setLoading(false)
         })
 
-        getAllAdvertisements().then(ads => {
-            setAllAds(ads.ads)
-        })
+        // getAllAdvertisements().then(ads => {
+        //     setAllAds(ads.ads)
+        // })
     }, []);
 
     const searchBasedOnType = async () => {

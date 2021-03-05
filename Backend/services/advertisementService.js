@@ -1,5 +1,5 @@
 const { model } = require("mongoose");
-const { Advertisements } = require("../models/model");
+const { Advertisements, User } = require("../models/model");
 
 module.exports.getAllAdvertisements = async () => new Promise((resolve, reject) => {
     Advertisements.find({}).then(ads => {
@@ -46,5 +46,20 @@ module.exports.searchBasedOnLocation = async (location) => {
 
 module.exports.searchByCategoryAndLocation = async (category, location) => {
     let advertisements = await Advertisements.find({ "category": { $regex: category, $options: 'i' }, "location.text": { $regex: location, $options: 'i' } });
-return advertisements;
+    return advertisements;
+}
+
+module.exports.addToFavourites = async (userId, adId) => {
+    let user = await User.findOne({ id: userId });
+    let favourites = user.favourites;
+
+    if (!favourites.find(adId)) {
+        favourites.push(adId)
+        user.favourites = favourites;
+    }
+    let isSuccess = await user.save();
+
+    if (!isSuccess) return false;
+
+    return true;
 }
