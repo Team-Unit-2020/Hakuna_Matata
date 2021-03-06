@@ -11,5 +11,13 @@ class ServiceProviderService{
     addProfile(data){
         return sendRequest("post",`${appSettings.backendUrl}/service-provider/profile/new`,data);
     }
+
+    updateProfile(data){
+        return sendRequest("post",`${appSettings.backendUrl}/service-provider/profiless/update`,data);
+    }
+
+    checkProfile(id){
+        return sendRequest("get",`${appSettings.backendUrl}/service-provider/profile/?id = ${id}`);
+    }
 }
 export default new ServiceProviderService();

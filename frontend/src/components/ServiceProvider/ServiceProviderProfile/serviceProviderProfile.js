@@ -26,6 +26,9 @@ export default class ServiceProviderProfile extends React.Component {
       serviceprovideraddress:"",
       serviceprovidermobilenumber:"",
       serviceprovideraboutme:"",
+      profile : true,
+      profileData: undefined,
+      disabled: false
     }
   }
   onChangeProfilePicture(e){
@@ -59,27 +62,58 @@ export default class ServiceProviderProfile extends React.Component {
     });
   }
   onSubmit(){
-    var data = {
-      userId: this.state.userId,
-      profileimage: this.state.serviceproviderimage,
-      name: this.state.serviceprovidername,
-      email:this.state.serviceprovideremail,
-      address:this.state.serviceprovideraddress,
-      mobilenumber:this.state.serviceprovidermobilenumber,
-      aboutme:this.state.serviceprovideraboutme,
+
+    if(this.state.profile){
+      console.log(this.state.profileData)
+      var data = {
+        id: this.state.profileData.id,
+        profileimage: this.state.serviceproviderimage,
+        name: this.state.serviceprovidername,
+        email:this.state.serviceprovideremail,
+        address:this.state.serviceprovideraddress,
+        mobilenumber:this.state.serviceprovidermobilenumber,
+        aboutme:this.state.serviceprovideraboutme,
+      }
+
+
+      ServiceProviderService.updateProfile(data)
+      .then(res =>{
+        console.log(res);
+        this.setState({
+          id: res.body.id
+        })
+        // window.alert("Submited Sucessfully")
+        window.location.reload()
+      })
+      .catch(e =>{
+        console.log(e);
+      })
+    }else{
+
+      var data = {
+        userId: this.state.userId,
+        profileimage: this.state.serviceproviderimage,
+        name: this.state.serviceprovidername,
+        email:this.state.serviceprovideremail,
+        address:this.state.serviceprovideraddress,
+        mobilenumber:this.state.serviceprovidermobilenumber,
+        aboutme:this.state.serviceprovideraboutme,
+      }
+
+      ServiceProviderService.addProfile(data)
+      .then(res =>{
+        console.log(res);
+        this.setState({
+          id: res.body.id
+        })
+        // window.alert("Submited Sucessfully")
+        window.location.reload()
+      })
+      .catch(e =>{
+        console.log(e);
+      })
     }
 
-    ServiceProviderService.addProfile(data)
-    .then(res =>{
-      console.log(res);
-      this.setState({
-        id: res.body.id
-      })
-      window.alert("Submited Sucessfully")
-    })
-    .catch(e =>{
-      console.log(e);
-    })
   }
 
   clearAllFields(){
@@ -98,8 +132,73 @@ export default class ServiceProviderProfile extends React.Component {
     });
   }
 
+  componentDidMount(){
+    this.checkProfile(JSON.parse(localStorage.getItem("user")).id)
+  }
+
+  checkProfile(id){
+    ServiceProviderService.checkProfile(id)
+    .then(res =>{
+      console.log(res);
+      if(res.status === 200){
+        this.setState({
+          profile:true,
+          profileData: res.body[0],
+          serviceprovidername: res.body[0].name,
+          onChangeServiceProviderEmail:res.body[0].email,
+          onChangeServiceProviderAddress:res.body[0].address,
+          onChangeServiceProviderMobileNumber: res.body[0].mobilenumber,
+          onChangeServiceProviderAboutMe:res.body[0].aboutme,
+          disabled: true
+        })
+      }
+
+      // window.alert("Submited Sucessfully")
+      // window.location.reload()
+    })
+    .catch(e =>{
+      console.log(e);
+    })
+  }
+
+  renderProfile(){
+    if(this.state.profileData){
+      var profile = this.state.profileData
+
+      return(
+        <div>
+          {JSON.stringify(profile)}
+         {/* Name - {profile['name']}
+         address - {profile['address']}
+         Name - {profile['name']}
+         Name - {profile['name']} */}
+        </div>
+      )
+      
+    } 
+    return(
+      <h1>
+        Loading
+      </h1>
+    )
+
+  }
+
+  formUpdate(e){
+    e.preventDefault()
+    this.setState({
+      disabled : (!this.state.disabled)
+    })
+  }
+
   render(){
+    
+   
+
     return (
+
+      <div>
+       {/* {this.state.profile ? this.renderProfile() : */}
       <Col className="ml-auto mr-auto" md="4">
         <h1 className="welcome-msg" hidden={this.state.id != null}> Create Profile </h1>
         <h1 className="welcome-msg" hidden={this.state.id == null}> Update Profile </h1>
@@ -116,7 +215,7 @@ export default class ServiceProviderProfile extends React.Component {
                   />
               </Col>
               
-        
+              <button  onClick = {this.formUpdate.bind(this)}> {this.state.disabled ?   "update profile" : "Cancel update" } </button>
               
               <Col md={6}>
               <img src={this.state.serviceproviderimage} alt="Preview" />
@@ -127,6 +226,7 @@ export default class ServiceProviderProfile extends React.Component {
                 <FormGroup>
                   <Label for="serviceprovidername">Name</Label>
                   <Input 
+                  disabled = {(this.state.disabled)? "disabled" : ""}
                   type="name"
                   name="serviceprovidername" 
                   id="serviceprovidername" 
@@ -142,6 +242,7 @@ export default class ServiceProviderProfile extends React.Component {
             <FormGroup>
               <Label for="serviceprovideremail">Email</Label>
               <Input 
+              disabled = {(this.state.disabled)? "disabled" : ""}
               type="email" 
               name="serviceprovideremail"
               id="serviceprovideremail"
@@ -155,6 +256,7 @@ export default class ServiceProviderProfile extends React.Component {
             <FormGroup>
               <Label for="serviceprovideraddress">Address</Label>
               <Input
+              disabled = {(this.state.disabled)? "disabled" : ""}
               type="text" 
               name="serviceprovideraddress"
               id="serviceprovideraddress"
@@ -170,6 +272,7 @@ export default class ServiceProviderProfile extends React.Component {
                 <FormGroup>
                   <Label for="serviceprovidermobilenumber">Mobile Number</Label>
                   <Input
+                  disabled = {(this.state.disabled)? "disabled" : ""}
                   type="text" 
                   name="serviceprovidermobilenumber"
                   id="serviceprovidermobilenumber"
@@ -185,6 +288,7 @@ export default class ServiceProviderProfile extends React.Component {
                 <FormGroup>
                   <Label for="serviceprovideraboutme">About Me</Label>
                   <Input
+                  disabled = {(this.state.disabled)? "disabled" : ""}
                   type="text" 
                   name="serviceprovideraboutme"
                   id="serviceprovideraboutme" 
@@ -211,6 +315,10 @@ export default class ServiceProviderProfile extends React.Component {
           </Form>
         </Card>
       </Col>
+      {/* } */}
+      </div>
+          
+          
     )
   }
   

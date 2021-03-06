@@ -78,6 +78,7 @@ export default function Login() {
     }
 
     const login = () => {
+        debugger;
         setPending(true);
         setError("");
         if (email && password) {
