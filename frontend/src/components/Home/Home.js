@@ -4,8 +4,8 @@ import { getAllAdvertisements, getAdvertisementbyPlace, getAdvertisementbyCatego
 import { getHomeIcons } from '../../services/dynamicLoadingService';
 import DashboardNav from '../Common/Navbars/DashboardNav';
 import HomePageNav from '../Common/Navbars/HomePageNav';
-import AdvertisementWall from '../Advertisement/AdvertisementWall';
 import AdCard from './AdCard';
+
 export default function Home() {
 
     const [user, setUser] = useState();
@@ -18,7 +18,7 @@ export default function Home() {
 
     const checkAuth = () => localStorage.getItem("access_token") ? true : false;
     useEffect(() => {
-        if(checkAuth()){
+        if (checkAuth()) {
             var localUser = JSON.parse(localStorage.getItem("user"));
             setUser(localUser);
         }
@@ -31,9 +31,9 @@ export default function Home() {
             setLoading(false)
         })
 
-        // getAllAdvertisements().then(ads => {
-        //     setAllAds(ads.ads)
-        // })
+        getAllAdvertisements().then(ads => {
+            setAllAds(ads.ads)
+        })
     }, []);
 
     const searchBasedOnType = async () => {
@@ -50,11 +50,9 @@ export default function Home() {
         }
     }
 
-
-
     return (
         <div>
-            {checkAuth() ? (<DashboardNav user={user}/>) : (<HomePageNav />)}
+            {checkAuth() ? (<DashboardNav transparent={true} user={user} />) : (<HomePageNav />)}
             <div className="page-header clear-filter" filter-color="blue">
                 <div
                     className="page-header-image"
@@ -92,7 +90,6 @@ export default function Home() {
                         </>))}
                     </Nav>
                 </Container>
-
                 <Container>
                     <div className="content-center brand">
                         <InputGroup>
@@ -117,33 +114,14 @@ export default function Home() {
 
                 </Container>
 
-                {/* <Container style={{ marginTop: '20%'}}>
-                    <div className="content-center brand">
-                        <InputGroup>
-                            <Input
-                                className="form-control-success form-control-lg"
-                                placeholder="What do you need..."
-                                type="text"
-                            ></Input>
-                        </InputGroup>
-                        <div className="col text-center">
-                            <Button
-                                className="btn-round btn-white"
-                                color="info"
-                                size="lg"
-                            >
-                                <i className="now-ui-icons ui-1_zoom-bold"></i> Search
-                            </Button>
-                        </div>
-                    </div>
 
-                </Container> */}
             </div>
-
-            <AdvertisementWall/>
+            <div ref={serviceSectionRef}>
+                <Container >
+                    {allAds.map(x => (<AdCard ad={x} id={x.id} />))}
+                </Container>
+            </div>
         </div>
-        
 
     )
-    
 }
