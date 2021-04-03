@@ -85,18 +85,7 @@ const advertisementsSchema = new mongoose.Schema({
     }
 });
 
-const advertisementScema = new mongoose.Schema({
-    id: 'string',
-    name: 'string',
-    description:'string',
-    catergory:'string',
-    availableQty: 'number',
-    price: 'number',
-    serviceProviderId: 'string'
-    
-});
-
-module.exports.Advertisement = mongoose.model('Advertisement', advertisementScema);
+module.exports.Advertisements = mongoose.model('Ads', advertisementsSchema);
 
 const orderSchema = new mongoose.Schema({
     id: 'string',
