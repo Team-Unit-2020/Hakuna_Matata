@@ -18,3 +18,6 @@ export const addAdvertisementToFavourites = (userId, adId) =>
 
 export const getFavouritesbyUser = (userId) =>
     sendRequest("get", `${appSettings.backendUrl}/service-provider/services/favourites/user/${userId}`, null);
+
+export const removeFromFavourite = (userId, adId) =>
+    sendRequest("get", `${appSettings.backendUrl}/service-provider/services/favourite/remove/user/${userId}/ad/${adId}`, null);

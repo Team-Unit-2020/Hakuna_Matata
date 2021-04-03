@@ -70,3 +70,15 @@ module.exports.getFavouritesByUser = async (userId) => {
     let advertisements = await Advertisements.find({ id: favouriteAdIds });
     return advertisements;
 }
+
+module.exports.removeFavourite = async (userId, adId) => {
+    let user = await User.findOne({ id: userId });
+    let favouriteAdIds = user.favourites;
+    let newFavourites = favouriteAdIds.filter(element => element !== adId);
+    user.favourites = newFavourites;
+    let isSuccess = await user.save();
+
+    if (!isSuccess) return false;
+
+    return true;
+}

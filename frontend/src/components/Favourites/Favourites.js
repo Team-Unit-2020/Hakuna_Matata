@@ -15,6 +15,7 @@ export default function Favourites() {
     const [loading, setLoading] = useState(true);
     const [adList, setAdList] = useState([]);
     const checkAuth = () => localStorage.getItem("access_token") ? true : false;
+    const [relaod, setRelaod] = useState(false);
 
     useEffect(() => {
         if (checkAuth()) {
@@ -29,8 +30,11 @@ export default function Favourites() {
                 .catch(err => SweetAlert.fire({ position: 'center', icon: 'error', title: err.message, showConfirmButton: true }))
                 .finally(() => setLoading(false))
         }
-    }, [user])
+    }, [user, relaod])
 
+    const updateList = () => {
+        setRelaod(!relaod)
+    }
 
     return (
         <div>
@@ -39,7 +43,7 @@ export default function Favourites() {
                     <DashboardNav user={user} transparent={false} />
                     <Container >
                         <div><h3>Favourite Ads</h3></div>
-                        {adList.map(x => (<AdCard ad={x} id={x.id} />))}
+                        {adList.map(x => (<AdCard ad={x} id={x.id} favouriteCard={true} setUpdate={updateList}/>))}
                     </Container>
                 </div>
             )}

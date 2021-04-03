@@ -6,7 +6,7 @@ const { getAllAdvertisements,
     getAdvertismentById,
     searchBasedOnLocation,
     searchByCategoryAndLocation,
-    addToFavourites, getFavouritesByUser } = require('../services/advertisementService')
+    addToFavourites, getFavouritesByUser, removeFavourite } = require('../services/advertisementService')
 
 router.get("/all", (req, res) => {
     getAllAdvertisements().then(ads => {
@@ -68,6 +68,14 @@ router.get("/favourites/user/:userId", async (req, res) => {
     if (!favouriteAds) res.json({ status: 500, message: "No any favourite ads!" });
 
     res.json({ status: 200, favouriteAds: favouriteAds })
+})
+
+router.get("/favourite/remove/user/:userId/ad/:adId", async (req, res) => {
+    let isSuccess = await removeFavourite(req.params.userId, req.params.adId);
+
+    if (!isSuccess) res.json({ status: 500, message: "Operation Failed" });
+
+    res.json({ status: 200, message: "Successfully Removed from Favourites!" })
 })
 
 module.exports = router;
