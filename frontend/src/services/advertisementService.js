@@ -15,3 +15,9 @@ export const getAdvertisementbyCategory = (category, location) =>
 
 export const addAdvertisementToFavourites = (userId, adId) =>
     sendRequest("get", `${appSettings.backendUrl}/service-provider/services/add/favourites/user/${userId}/ad/${adId}`, null);
+
+export const getFavouritesbyUser = (userId) =>
+    sendRequest("get", `${appSettings.backendUrl}/service-provider/services/favourites/user/${userId}`, null);
+
+export const removeFromFavourite = (userId, adId) =>
+    sendRequest("get", `${appSettings.backendUrl}/service-provider/services/favourite/remove/user/${userId}/ad/${adId}`, null);

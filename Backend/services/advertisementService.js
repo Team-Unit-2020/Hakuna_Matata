@@ -53,10 +53,29 @@ module.exports.addToFavourites = async (userId, adId) => {
     let user = await User.findOne({ id: userId });
     let favourites = user.favourites;
 
-    if (!favourites.find(adId)) {
+    if (!favourites.find(e => e === adId)) {
         favourites.push(adId)
         user.favourites = favourites;
+        let isSuccess = await user.save();
+        if (!isSuccess) return false;
+        return true;
+    } else {
+        return false
     }
+}
+
+module.exports.getFavouritesByUser = async (userId) => {
+    let user = await User.findOne({ id: userId });
+    let favouriteAdIds = user.favourites;
+    let advertisements = await Advertisements.find({ id: favouriteAdIds });
+    return advertisements;
+}
+
+module.exports.removeFavourite = async (userId, adId) => {
+    let user = await User.findOne({ id: userId });
+    let favouriteAdIds = user.favourites;
+    let newFavourites = favouriteAdIds.filter(element => element !== adId);
+    user.favourites = newFavourites;
     let isSuccess = await user.save();
 
     if (!isSuccess) return false;

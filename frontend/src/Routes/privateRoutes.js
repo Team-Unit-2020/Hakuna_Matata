@@ -4,6 +4,7 @@ import OrderPage from '../components/Order/OrderPage'
 import ServiceProviderAddPost from "../components/ServiceProvider/ServiceProviderAddPost/serviceProviderAddPost";
 import ServiceProviderDashboard from "../components/ServiceProvider/ServiceProviderDashboard/serviceProviderDashboard";
 import ServiceProviderProfile from "../components/ServiceProvider/ServiceProviderProfile/serviceProviderProfile";
+import Favourites from '../components/Favourites/Favourites';
 
 const GetPrivateRoutes = () => [
     {
@@ -35,6 +36,11 @@ const GetPrivateRoutes = () => [
         path: "/service-provider/add-post",
         exact: true,
         component: ServiceProviderAddPost,
+    },
+    {
+        path: "/favourites",
+        exact: true,
+        component: Favourites,
     },
 ]
 

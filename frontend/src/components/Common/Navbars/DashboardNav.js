@@ -84,6 +84,17 @@ export default function DashboardNav(props) {
                             </NavLink>
                         </NavItem>
                         <NavItem>
+                            <NavLink
+                                href="#pablo"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    history.push("/favourites")
+                                }}
+                            >
+                                <p>Favourites</p>
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
                             <UncontrolledDropdown nav>
                                 <DropdownToggle
                                     aria-haspopup={true}
