@@ -16,3 +16,7 @@ export const authenticateUser = (body) =>
     sendRequest("post", `${appSettings.backendUrl}/auth/login`, body);
 export const getUserById = (id) =>
     sendRequest("get", `${appSettings.backendUrl}/user/${id}`, null);
+    export const updateProfile = (user, id) =>
+    sendRequest("put", `${appSettings.backendUrl}/user/edit/profile/${id}`, user);
+export const deactivateAccount = (id) =>
+    sendRequest("get", `${appSettings.backendUrl}/user/account/deactivation/${id}`, null);

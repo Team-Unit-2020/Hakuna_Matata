@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Container, Button } from "reactstrap";
-import HomePageNav from '../Navbars/HomePageNav';
+import HomePageNav from '../Common/Navbars/HomePageNav';
 import { Link } from "react-router-dom";
 import { activateUser } from '../../services/userService';
 
@@ -19,7 +19,7 @@ export default function Confirm(props) {
         }).finally(() => {
             setPending(false);
         })
-    }, [])
+    }, [props.match.params.code])
 
     return (
         <div>

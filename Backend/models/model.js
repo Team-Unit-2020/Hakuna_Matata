@@ -16,10 +16,12 @@ const userSchema = new mongoose.Schema({
     address: 'string',
     password: 'string',
     nic: 'string',
+    usertype: 'string',
     active: {
         type: Boolean,
         default: false
-    }
+    },
+    favourites: [String]
 })
 
 module.exports.User = mongoose.model('User', userSchema);
@@ -46,6 +48,42 @@ const serviceProviderProfileSchema = new mongoose.Schema({
     }
 })
 module.exports.ServiceProviderProfile = mongoose.model('ServiceProviderProfile', serviceProviderProfileSchema);
+const homeIconsSchema = new mongoose.Schema({
+    id: 'string',
+    name: 'string',
+    icon: 'string',
+    toolTip: 'string',
+    isActive: {
+        type: Boolean,
+        default: false
+    }
+});
+module.exports.HomeIcons = mongoose.model('HomeIcons', homeIconsSchema);
+
+const advertisementsSchema = new mongoose.Schema({
+    id: 'string',
+    title: 'string',
+    body: 'string',
+    location: {
+        text: { type: 'string' },
+        lan: { type: mongoose.Schema.Types.Decimal128 },
+        lat: { type: mongoose.Schema.Types.Decimal128 }
+    },
+    keywords: [String],
+    images: [String],
+    category: 'string',
+    isActive: {
+        type: Boolean,
+        default: false
+    },
+    serviceProvider: {
+        name: 'string',
+        phoneNumber: [String],
+        address: 'string',
+        memberSince: 'string',
+        email: 'string'
+    }
+});
 
 const advertisementScema = new mongoose.Schema({
     id: 'string',
@@ -59,3 +97,33 @@ const advertisementScema = new mongoose.Schema({
 });
 
 module.exports.Advertisement = mongoose.model('Advertisement', advertisementScema);
+
+const orderSchema = new mongoose.Schema({
+    id: 'string',
+    title: 'string',
+    body: 'string',
+    advertisementId: 'string',
+    serviceProvider: {
+        name: 'string',
+        phoneNumber: [String],
+        memberSince: 'string',
+        email: 'string'
+    },
+    item: {
+        name: 'string',
+        description: 'string',
+        amount: 'string',
+        isAccepted: {
+            type: Boolean,
+            default: false
+        }
+    },
+    serviceSeeker: {
+        id: 'string',
+        name: 'string',
+        email: 'string',
+        phone: 'string',
+    }
+})
+
+module.exports.Orders = mongoose.model('Orders', orderSchema);

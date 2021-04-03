@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.20.0",
     "bootstrap": "^4.5.3",
+    "google-map-react": "^2.1.9",
     "lanka-nic-2019": "^1.0.3",
     "moment": "^2.29.1",
     "react": "^16.14.0",
@@ -20,7 +21,9 @@
     "react-scripts": "3.4.3",
     "reactstrap": "^8.6.0",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "sweetalert2": "^10.13.3",
+    "sweetalert2-react-content": "^3.2.2"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -179,7 +179,9 @@ router.post("/login", async (req, res, next) => {
             if (err || !user) {
                 return res.json({ status: 503, message: "Username and Password combination is incorrect!" });
             }
-
+            if (!user.active)
+            return res.json({ status: 404, message: "User have deactivated his account" });
+            
             req.logIn(user, { session: false }, async (error) => {
                 const body = { id: user.id, email: user.email, name: user.name }
                 const token = jwt.sign({ user: body }, process.env.AUTH_SECRET);

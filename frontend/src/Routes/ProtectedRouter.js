@@ -12,6 +12,7 @@ export default function ProtectedRouter(props) {
     return (
         <Route
             render={() => checkAuth() ? (<Component />) : (<Redirect to='/login' />)}
+            path={props.path}
         />
     );
 }
