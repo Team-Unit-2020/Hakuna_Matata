@@ -15,3 +15,6 @@ export const getAdvertisementbyCategory = (category, location) =>
 
 export const addAdvertisementToFavourites = (userId, adId) =>
     sendRequest("get", `${appSettings.backendUrl}/service-provider/services/add/favourites/user/${userId}/ad/${adId}`, null);
+
+export const getFavouritesbyUser = (userId) =>
+    sendRequest("get", `${appSettings.backendUrl}/service-provider/services/favourites/user/${userId}`, null);

@@ -15,7 +15,12 @@ import { getAdvertisementbyId } from '../../services/advertisementService';
 import { useHistory, useParams } from 'react-router-dom';
 import Spinner from '../Common/Spinner';
 import Corusel from '../Common/Corusel';
-import Map from '../Common/Map'
+import Map from '../Common/Map';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content';
+import { addAdvertisementToFavourites } from '../../services/advertisementService'
+
+const SweetAlert = withReactContent(Swal)
 
 export default function ViewAd() {
     const [user, setUser] = useState();
@@ -44,6 +49,12 @@ export default function ViewAd() {
         history.push(`/order/${id}`)
     }
 
+    const addToFavourites = () => {
+        addAdvertisementToFavourites(user.id, id).
+            then(result => SweetAlert
+                .fire({ position: 'center', icon: 'success', title: result.message, showConfirmButton: true }))
+            .catch(err => SweetAlert.fire({ position: 'center', icon: 'error', title: err.message, showConfirmButton: true }))
+    }
     return (
         <div>
             {isLoading ? (<Spinner marginTop={"25vh"} />) : (
@@ -100,7 +111,7 @@ export default function ViewAd() {
                                                                 <Button className="btn btn-block" color="success" onClick={() => goToOrderPage(advertisement.id)}>
                                                                     Order Service
                                                                 </Button>
-                                                                <Button className="btn btn-block" color="info">
+                                                                <Button className="btn btn-block" color="info" onClick={addToFavourites}>
                                                                     Add to Favourites
                                                                 </Button>
                                                             </Col>

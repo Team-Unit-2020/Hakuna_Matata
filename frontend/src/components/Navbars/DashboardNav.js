@@ -12,7 +12,7 @@ import {
     Nav,
     Container
 } from "reactstrap";
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 export default function DashboardNav(props) {
     const [collapseOpen, setCollapseOpen] = useState(false);
@@ -59,6 +59,17 @@ export default function DashboardNav(props) {
                         <NavItem>
                             <NavLink
                                 href="#pablo"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    history.push("/favourites")
+                                }}
+                            >
+                                <p>Favourites</p>
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink
+                                href="#pablo"
                                 onClick={(e) => e.preventDefault()}
                             >
                                 <p>Profile</p>
@@ -73,7 +84,7 @@ export default function DashboardNav(props) {
                                     href="http://example.com?ref=creativetim"
                                     nav
                                 >
-                                    <p>{props.user ? props.user.name: "User"}</p>
+                                    <p>{props.user ? props.user.name : "User"}</p>
                                 </DropdownToggle>
                                 <DropdownMenu>
                                     <DropdownItem
