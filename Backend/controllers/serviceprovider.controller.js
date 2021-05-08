@@ -2,19 +2,21 @@ const express = require('express');
 const { startSession, Mongoose } = require('mongoose');
 const router = express.Router();
 const { v4: uuidv4 } = require('uuid');
-const { Advertisement, ServiceProviderProfile } = require('../models/model');
+const { Advertisements, ServiceProviderProfile } = require('../models/model');
 
 
 router.post('/advertisement/new',async (req,res)=>{
     var id = uuidv4();
-    const advertisement = new Advertisement({
+    const advertisement = new Advertisements({
         id: id,
-        name: req.body.productname,
-        description: req.body.productdescription,
-        catergory: req.body.productcategory,
-        availableQty: req.body.productavailableqty,
+        title: req.body.productname,
+        body: req.body.productdescription,
+        category: req.body.productcategory,
+        qty: req.body.productavailableqty,
         price: req.body.productprice,
-        serviceProviderId: req.body.productavailableqty
+        serviceProvider:{
+            id: req.body.productavailableqty
+        } 
     });
    
     advertisement.save((err)=>{
