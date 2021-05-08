@@ -16,7 +16,13 @@ router.post('/advertisement/new',async (req,res)=>{
         price: req.body.productprice,
         serviceProvider:{
             id: req.body.productavailableqty
-        } 
+        },
+        images: [req.body.images],
+        location: {
+            text: req.body.location,
+            lan: 79.861244,
+            lat: 6.927079
+        }
     });
    
     advertisement.save((err)=>{
@@ -111,11 +117,11 @@ router.post('/profiless/update',(req,res)=>{
         // }
     }
 
-    ServiceProviderProfile.replaceOne({"_id": req.body.id}, profile, function(err, results){
+    ServiceProviderProfile.replaceOne({"id": req.body.id.replace(/^\s+|\s+$/g, '')}, profile, function(err, results){
         if(err){console.log(err)}
         else{
-            console.log(setField);
-            res.json(results)
+            console.log(results);
+            res.json(req.body)
         }
      })
 
