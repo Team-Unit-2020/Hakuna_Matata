@@ -76,7 +76,10 @@ const advertisementsSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    qty: 'number',
+    price: 'number',
     serviceProvider: {
+        id: 'string',
         name: 'string',
         phoneNumber: [String],
         address: 'string',
