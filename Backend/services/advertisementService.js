@@ -21,8 +21,19 @@ module.exports.addNewAdvertisement = async () => new Promise((resolve, reject) =
 })
 
 module.exports.getAdvertismentById = async (id) => new Promise((resolve, reject) => {
-    Advertisements.findOne({ id: id }).then(ad => {
-        resolve(ad)
+    Advertisements.findOne({ id: id }).lean().then(async ad => {
+        const serviceProviderId = ad.serviceProvider.id;
+        const sp = await User.findOne({id: serviceProviderId});
+        resolve({
+            ...ad,
+            serviceProvider: {
+                id: serviceProviderId,
+                phoneNumber: [
+                    sp.phone
+                ],
+                email: sp.email
+            }
+        })
     }).catch(err => {
         reject(err)
     })
