@@ -15,7 +15,7 @@ router.post('/advertisement/new',async (req,res)=>{
         qty: req.body.productavailableqty,
         price: req.body.productprice,
         serviceProvider:{
-            id: req.body.productavailableqty
+            id: req.body.userId
         },
         images: [req.body.images],
         location: {
