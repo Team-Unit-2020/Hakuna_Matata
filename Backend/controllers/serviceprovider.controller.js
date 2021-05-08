@@ -16,7 +16,13 @@ router.post('/advertisement/new',async (req,res)=>{
         price: req.body.productprice,
         serviceProvider:{
             id: req.body.productavailableqty
-        } 
+        },
+        images: [req.body.images],
+        location: {
+            text: req.body.location,
+            lan: 79.861244,
+            lat: 6.927079
+        }
     });
    
     advertisement.save((err)=>{
