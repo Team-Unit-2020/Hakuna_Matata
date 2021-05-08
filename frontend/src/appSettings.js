@@ -7,6 +7,8 @@ export const getSetting = (key) => {
 
 export const appSettings = {
   backendUrl: getSetting("REACT_APP_BACKEND_API"),
-  googleMapAPIKey: getSetting("REACT_APP_GOOGLEMAP_APP_KEY")
+  googleMapAPIKey: getSetting("REACT_APP_GOOGLEMAP_APP_KEY"),
+  payhereMerchentId: getSetting("REACT_APP_PAYHERE_MERCHENT_ID"),
+  payhereNotifyUrl: getSetting("REACT_APP_PAYHERE_NOTIFY_URL"),
 };
 

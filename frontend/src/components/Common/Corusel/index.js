@@ -58,7 +58,7 @@ function CarouselSection(props) {
                       onExited={onExited}
                       key={item.src}
                     >
-                      <img src={item} alt={props.title} />
+                      <img src={item} alt={props.title} height="350px"/>
                     </CarouselItem>
                   );
                 })}
