@@ -111,11 +111,11 @@ router.post('/profiless/update',(req,res)=>{
         // }
     }
 
-    ServiceProviderProfile.replaceOne({"_id": req.body.id}, profile, function(err, results){
+    ServiceProviderProfile.replaceOne({"id": req.body.id.replace(/^\s+|\s+$/g, '')}, profile, function(err, results){
         if(err){console.log(err)}
         else{
-            console.log(setField);
-            res.json(results)
+            console.log(results);
+            res.json(req.body)
         }
      })
 
