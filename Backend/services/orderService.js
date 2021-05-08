@@ -32,3 +32,13 @@ module.exports.sendOrder = async (order) => {
 
     return true;
 }
+
+module.exports.getOrdersByUser = async (userId) => {
+    var orders = await Orders.find({ "serviceSeeker.id": userId  });
+    return orders;
+}
+
+module.exports.getOrdersById = async (orderId) => {
+    var order = await Orders.findOne({ id: orderId  });
+    return order;
+}

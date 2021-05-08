@@ -19,12 +19,14 @@ const serviceProviderRoute = require('./controllers/serviceprovider.controller')
 const dynamicRoute = require('./controllers/dynamic.controller');
 const adsRoute = require('./controllers/advertisement.controller');
 const orderRoute = require('./controllers/order.controller');
+const payhereRoute = require('./controllers/payhere.controller');
 
 app.use('/auth', authRoute);
 app.use('/user', passport.authenticate('jwt', {session: false}), profileRoute);
 app.use('/service-provider', serviceProviderRoute);
 app.use('/service-provider/services', adsRoute);
 app.use('/dynamic', dynamicRoute);
+app.use('/payhere', payhereRoute);
 app.use('/order', passport.authenticate('jwt', {session: false}), orderRoute);
 
 app.listen(port, function () {  

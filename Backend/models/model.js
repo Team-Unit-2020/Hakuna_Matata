@@ -105,6 +105,17 @@ const orderSchema = new mongoose.Schema({
         isAccepted: {
             type: Boolean,
             default: false
+        },
+        payments: {
+            paymentAmount: 'string',
+            isPayed: {
+                type: Boolean,
+                default: false
+            },
+            isAdvancedPayed: {
+                type: Boolean,
+                default: false
+            }
         }
     },
     serviceSeeker: {

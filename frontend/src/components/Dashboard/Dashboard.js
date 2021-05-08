@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { getUserById } from '../../services/userService';
 import DashboardNav from '../Common/Navbars/DashboardNav';
 import Spinner from '../Spinner';
@@ -21,19 +21,20 @@ export default function Dashboard() {
     const [showMeDresses, setShowMeDresses] = useState(true);
     const [showMeGifts, setShowMeGifts] = useState(true);
     const [showMeDecoration, setShowMeDecoration] = useState(true);
+    const [showSoundAndLights, setShowSoundAndLights] = useState(true);
     const [location, setLocation] = useState("");
-    const [user, setUser ] = useState(null);
+    const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         var id = JSON.parse(localStorage.getItem("user")).id;
         getUserById(id)
-        .then((u) => {
-            setUser(u.user);
-        }).finally(() => {
-            setLoading(false);
-        })
-    },[])
+            .then((u) => {
+                setUser(u.user);
+            }).finally(() => {
+                setLoading(false);
+            })
+    }, [])
 
     const handlePartyTypeChange = (event) => {
         setEventType(event.target.value);
@@ -57,14 +58,14 @@ export default function Dashboard() {
         setShowMeDecoration(!showMeDecoration);
     }
 
-    if(loading){
-        return(
-            <Spinner/>
+    if (loading) {
+        return (
+            <Spinner />
         )
-    }else{
+    } else {
         return (
             <div>
-                <DashboardNav user={user}/> 
+                <DashboardNav user={user} />
                 <div className="page-header clear-filter" filter-color="blue">
                     <div
                         className="page-header-image"
@@ -72,7 +73,7 @@ export default function Dashboard() {
                             // backgroundImage: "url(" + require("../../assets/img/dashboard.jpg") + ")",
                         }}
                     ></div>
-    
+
                     <Container>
                         <Row>
                             <Col md="4">
@@ -80,7 +81,7 @@ export default function Dashboard() {
                                     <CardHeader>
                                         <h4>Search based on Your Event</h4>
                                     </CardHeader>
-                                    <CardBody style={{ textAlign: "left"}}>
+                                    <CardBody style={{ textAlign: "left" }}>
                                         <h6>Select Your Event type:</h6>
                                         <select className="form-control" value={eventType} onChange={handlePartyTypeChange}>
                                             <option value="">Select...</option>
@@ -119,7 +120,7 @@ export default function Dashboard() {
                                                         <span className="form-check-sign"></span>
                                                 I need a  Cake
                                                     </Label>
-    
+
                                                 </FormGroup>
                                                 <br />
                                             </>
@@ -132,7 +133,7 @@ export default function Dashboard() {
                                                         <span className="form-check-sign"></span>
                                                 Show me dresses
                                                     </Label>
-    
+
                                                 </FormGroup>
                                                 <br />
                                             </>
@@ -149,6 +150,18 @@ export default function Dashboard() {
                                                 <br />
                                             </>
                                         )}
+                                        {soundsAndLights.filter(x => x == eventType).length > 0 && (
+                                            <>
+                                                <FormGroup check>
+                                                    <Label check>
+                                                        <Input defaultChecked type="checkbox" checked={showSoundAndLights} onChange={() => setShowSoundAndLights(!showSoundAndLights)} />
+                                                        <span className="form-check-sign"></span>
+                                            I need Sounds and Lights
+                                                </Label>
+                                                </FormGroup>
+                                                <br />
+                                            </>
+                                        )}
                                         {decorations.filter(x => x == eventType).length > 0 && (
                                             <>
                                                 <FormGroup check>
@@ -157,7 +170,7 @@ export default function Dashboard() {
                                                         <span className="form-check-sign"></span>
                                                 Show me Decorations
                                                     </Label>
-    
+
                                                 </FormGroup>
                                                 <br />
                                             </>
@@ -177,12 +190,12 @@ export default function Dashboard() {
                                 </Card>
                             </Col>
                             <Col md="8">
-    
+
                             </Col>
                         </Row>
                     </Container>
                 </div>
             </div>
         )
-                                        }
+    }
 }

@@ -41,7 +41,7 @@ export default function AdCard(props) {
 
     return (
         <Card style={{ width: "20rem", color: "black", margin: "10px" }}>
-            <img src={props.ad.images[0]} />
+            <img src={props.ad.images[0]} height="200px"/>
             <CardBody>
                 <CardTitle tag="h6" style={{ overflow: "hidden", textOverflow: "ellipsis", wordWrap: "break-word", display: "block", lineHeight: "1em", maxHeight: "1em" }}>{props.ad.title}</CardTitle>
                 <Button

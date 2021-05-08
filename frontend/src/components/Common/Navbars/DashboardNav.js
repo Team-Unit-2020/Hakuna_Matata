@@ -19,7 +19,6 @@ export default function DashboardNav(props) {
     const [collapseOpen, setCollapseOpen] = useState(false);
     const history = useHistory();
     const [user, setUser] = useState(null);
-    console.log("🚀 ~ file: DashboardNav.js ~ line 22 ~ DashboardNav ~ user", user)
 
     const onClickLogout = () => {
         localStorage.clear();
@@ -93,6 +92,17 @@ export default function DashboardNav(props) {
                                 }}
                             >
                                 <p>Favourites</p>
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink
+                                href="#pablo"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    history.push("/orders")
+                                }}
+                            >
+                                <p>My Orders</p>
                             </NavLink>
                         </NavItem>
                         <NavItem>
