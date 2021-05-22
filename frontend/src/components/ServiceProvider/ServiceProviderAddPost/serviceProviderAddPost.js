@@ -12,6 +12,9 @@ import {
 import DashboardNav from "../../Navbars/DashboardNav";
 import "../../../CustomStyles/custom.css";
 import ServiceProviderService from "../../../services/service-provider.service";
+import history from "../../../_helpers/history";
+import { withRouter } from "react-router-dom";
+
 
 class ServiceProviderAddPost extends React.Component {
   constructor(props) {
@@ -43,6 +46,8 @@ class ServiceProviderAddPost extends React.Component {
       isActive: true,
     };
   }
+
+  
 
   componentDidMount() {
     var user = localStorage.getItem("user");
@@ -92,6 +97,20 @@ class ServiceProviderAddPost extends React.Component {
     this.setState({ location: e.target.value });
   };
 
+  clearField = () => {
+    this.setState({
+      productname: "",
+      productcategory: "",
+      productdescription: "",
+      productprice: 0,
+      productavailableqty: 0,
+      keywords: "",
+      images: "",
+      location: "",
+      isActive: true,
+    })
+  }
+
   onCreateAdvertisementClick() {
     var data = {
       userId: this.state.userID,
@@ -112,9 +131,13 @@ class ServiceProviderAddPost extends React.Component {
     ServiceProviderService.addPost(data)
       .then((res) => {
         console.log("add service-provider : res : ", res);
+        this.props.history.push("/service-provider/dashboard")
       })
       .catch((e) => {
         console.log("add service-provider : err : ", e);
+        this.clearField()
+        this.props.history.push("/service-provider/dashboard")
+
       });
   }
   render() {
@@ -318,4 +341,4 @@ const validate = (values) => {
 //   })(connect(mapStateToProps, mapDispatchToProps)(ServiceProviderAddPost))
 // );
 
-export default ServiceProviderAddPost;
+export default withRouter(ServiceProviderAddPost);
