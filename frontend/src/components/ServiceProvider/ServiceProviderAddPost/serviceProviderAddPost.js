@@ -149,7 +149,14 @@ class ServiceProviderAddPost extends React.Component {
       isActive,
     } = this.state;
     return (
-      <Col className="ml-auto mr-auto" md="4">
+      <div
+      style={{
+        backgroundImage:
+          "url(" + require("../../../assets/img/header.jpg") + ")",
+        backgroundRepeat: "repeat-x",
+        minHeight: 1000,
+      }}>
+        <Col className="ml-auto mr-auto" md="4">
         <h2 className="welcome-msg">Add Post</h2>
 
         <Form>
@@ -300,6 +307,7 @@ class ServiceProviderAddPost extends React.Component {
           </Button>
         </Form>
       </Col>
+      </div>
     );
   }
 }
