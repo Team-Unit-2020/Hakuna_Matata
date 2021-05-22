@@ -62,6 +62,16 @@ export default function DashboardNav(props) {
                 </div>
                 <Collapse isOpen={collapseOpen} navbar>
                     <Nav className="ml-auto" navbar>
+                    <NavItem>
+                            <NavLink
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    history.push("/service-provider/dashboard")
+                                }}
+                            >
+                                <p>Dashboard</p>
+                            </NavLink>
+                        </NavItem>
                         <NavItem>
                             <NavLink
                                 onClick={(e) => {
