@@ -28,6 +28,7 @@ module.exports.getAdvertismentById = async (id) => new Promise((resolve, reject)
             ...ad,
             serviceProvider: {
                 id: serviceProviderId,
+                name: sp.name,
                 phoneNumber: [
                     sp.phone
                 ],

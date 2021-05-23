@@ -135,8 +135,8 @@ export default function ViewAd() {
                               {advertisement.serviceProvider.name}
                             </Col>
                             <Col md={12}>
-                              <b>Member since: </b>
-                              {advertisement.serviceProvider.memberSince}
+                              <b>Available Qty: </b>
+                              {advertisement.qty}
                             </Col>
                             <hr />
                             <Col md={12}>

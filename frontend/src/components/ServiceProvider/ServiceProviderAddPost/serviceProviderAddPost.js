@@ -8,6 +8,9 @@ import {
   Label,
   Input,
   Card,
+  Container,
+  CardHeader,
+  CardBody,
 } from "reactstrap";
 import DashboardNav from "../../Navbars/DashboardNav";
 import "../../../CustomStyles/custom.css";
@@ -121,7 +124,7 @@ class ServiceProviderAddPost extends React.Component {
       productavailableqty: this.state.productavailableqty,
       keywords: this.state.keywords,
       isActive: this.state.isActive,
-      images: this.state.images,
+      images: (this.state.images)? this.state.images: "",
       location: this.state.location,
     };
     console.log(
@@ -131,6 +134,7 @@ class ServiceProviderAddPost extends React.Component {
     ServiceProviderService.addPost(data)
       .then((res) => {
         console.log("add service-provider : res : ", res);
+        alert("Success");
         this.props.history.push("/service-provider/dashboard")
       })
       .catch((e) => {
@@ -152,161 +156,172 @@ class ServiceProviderAddPost extends React.Component {
       <div
       style={{
         backgroundImage:
-          "url(" + require("../../../assets/img/addPost.jpg") + ")",
+          "url(" + require("../../../assets/img/addPost.png") + ")",
         backgroundRepeat: "repeat-x",
         minHeight: 1000,
       }}>
-        <Col className="ml-auto mr-auto" md="4">
-        <h2 className="welcome-msg">Add Post</h2>
+        <DashboardNav/>
+        <Container>
+          <Card style={{ backgroundColor:"rgba(255,255,255,0.9)", color: "black", width: "50%" }}>
+            
+            <Col className="ml-auto mr-auto" md="12">
+            <CardHeader style={{ paddingTop: 10 }}>
+              <h2 className="welcome-msg">Add Post</h2>
+            </CardHeader>
+            <CardBody>
 
-        <Form>
-          <Row form>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="productname">Product Name</Label>
-                <Input
-                  type="text"
-                  name="productname"
-                  id="productname"
-                  required
-                  placeholder="Enter Product Name"
-                  value={this.state.productname}
-                  onChange={this.onChangeProductName}
-                />
-              </FormGroup>
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="productcategory">Catogery</Label>
-                <Input
-                  type="text"
-                  name="productcategory"
-                  id="productcategory"
-                  required
-                  placeholder="Enter Product Category"
-                  value={this.state.productcategory}
-                  onChange={this.onChangeProductCategory}
-                />
-              </FormGroup>
-            </Col>
-          </Row>
-          <FormGroup>
-            <Label for="productdescription">Description about Product</Label>
-            <Input
-              type="textarea"
-              name="productdescription"
-              id="productdescription"
-              required
-              placeholder="Enter a description about the product here"
-              value={this.state.productdescription}
-              onChange={this.onChangeProductDescription}
-            />
-          </FormGroup>
+              <Form>
+                <Row form>
+                  <Col md={6}>
+                    <FormGroup>
+                      <Label for="productname">Product Name</Label>
+                      <Input
+                        type="text"
+                        name="productname"
+                        id="productname"
+                        required
+                        placeholder="Enter Product Name"
+                        value={this.state.productname}
+                        onChange={this.onChangeProductName}
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col md={6}>
+                    <FormGroup>
+                      <Label for="productcategory">Catogery</Label>
+                      <Input
+                        type="text"
+                        name="productcategory"
+                        id="productcategory"
+                        required
+                        placeholder="Enter Product Category"
+                        value={this.state.productcategory}
+                        onChange={this.onChangeProductCategory}
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <FormGroup>
+                  <Label for="productdescription">Description about Product</Label>
+                  <Input
+                    type="textarea"
+                    name="productdescription"
+                    id="productdescription"
+                    required
+                    placeholder="Enter a description about the product here"
+                    value={this.state.productdescription}
+                    onChange={this.onChangeProductDescription}
+                  />
+                </FormGroup>
 
-          <Row form>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="productprice">Price </Label>
-                <Input
-                  type="text"
-                  name="productprice"
-                  id="productprice"
-                  required
-                  placeholder="Enter the price"
-                  value={this.state.productprice}
-                  onChange={this.onChangeProductPrice}
-                />
-              </FormGroup>
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="productavailableqty">Available Quantity</Label>
-                <Input
-                  type="text"
-                  name="productavailableqty"
-                  id="productavailableqty"
-                  required
-                  placeholder="Enter the quantity"
-                  value={this.state.productavailableqty}
-                  onChange={this.onChangeProductAvailableQty}
-                />
-              </FormGroup>
-            </Col>
-          </Row>
+                <Row form>
+                  <Col md={6}>
+                    <FormGroup>
+                      <Label for="productprice">Price </Label>
+                      <Input
+                        type="text"
+                        name="productprice"
+                        id="productprice"
+                        required
+                        placeholder="Enter the price"
+                        value={this.state.productprice}
+                        onChange={this.onChangeProductPrice}
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col md={6}>
+                    <FormGroup>
+                      <Label for="productavailableqty">Available Quantity</Label>
+                      <Input
+                        type="text"
+                        name="productavailableqty"
+                        id="productavailableqty"
+                        required
+                        placeholder="Enter the quantity"
+                        value={this.state.productavailableqty}
+                        onChange={this.onChangeProductAvailableQty}
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
 
-          <Row form>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="productprice">Keywords </Label>
-                <Input
-                  type="text"
-                  name="productprice"
-                  id="productprice"
-                  required
-                  placeholder="Enter the keywords"
-                  value={keywords}
-                  onChange={this.onChangeProductKeywords}
-                />
-              </FormGroup>
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="productavailableqty">Active Status</Label>
-                <Input
-                  type="checkbox"
-                  name="productavailableqty"
-                  id="productavailableqty"
-                  required
-                  placeholder="Enter the quantity"
-                  defaultChecked={true}
-                  value={isActive}
-                  onChange={this.onChangeProductActiveStatus}
-                />
-              </FormGroup>
-            </Col>
-          </Row>
+                <Row form>
+                  <Col md={6}>
+                    <FormGroup>
+                      <Label for="productprice">Keywords </Label>
+                      <Input
+                        type="text"
+                        name="productprice"
+                        id="productprice"
+                        required
+                        placeholder="Enter the keywords"
+                        value={keywords}
+                        onChange={this.onChangeProductKeywords}
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col md={6}>
+                    <FormGroup>
+      
+                      <Input
+                        type="checkbox"
+                        name="productActiveStatus"
+                        id="productActiveStatus"
+                        required
+                        defaultChecked={true}
+                        value={isActive}
+                        onChange={this.onChangeProductActiveStatus}
+                      />
+                      <Label for="productActiveStatus">Active Status</Label>
+                    </FormGroup>
+                  </Col>
+                </Row>
 
-          <Row form>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="productprice">Images </Label>
-                <Input
-                  type="text"
-                  name="productprice"
-                  id="productprice"
-                  required
-                  placeholder="Enter the images"
-                  value={images}
-                  onChange={this.onChangeImages}
-                />
-              </FormGroup>
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="productavailableqty">Location</Label>
-                <Input
-                  type="text"
-                  name="productavailableqty"
-                  id="productavailableqty"
-                  required
-                  placeholder="Enter the location"
-                  value={location}
-                  onChange={this.onChangeProductLocation}
-                />
-              </FormGroup>
-            </Col>
-          </Row>
+                <Row form>
+                  <Col md={6}>
+                    <FormGroup>
+                      <Label for="productprice">Images </Label>
+                      <Input
+                        type="text"
+                        name="productprice"
+                        id="productprice"
+                        required
+                        placeholder="Enter the images"
+                        value={images}
+                        onChange={this.onChangeImages}
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col md={6}>
+                    <FormGroup>
+                      <Label for="productavailableqty">Location</Label>
+                      <Input
+                        type="text"
+                        name="productavailableqty"
+                        id="productavailableqty"
+                        required
+                        placeholder="Enter the location"
+                        value={location}
+                        onChange={this.onChangeProductLocation}
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
 
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              this.onCreateAdvertisementClick();
-            }}
-          >
-            Submit
-          </Button>
-        </Form>
-      </Col>
+                <Button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    this.onCreateAdvertisementClick();
+                  }}
+                >
+                  Submit
+                </Button>
+              </Form>
+            </CardBody>
+          </Col>
+          </Card>
+
+        </Container>
       </div>
     );
   }
