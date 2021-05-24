@@ -156,7 +156,7 @@ class ServiceProviderAddPost extends React.Component {
       <div
       style={{
         backgroundImage:
-          "url(" + require("../../../assets/img/addPost.png") + ")",
+          "url(" + require("../../../assets/img/addPosts.png") + ")",
         backgroundRepeat: "repeat-x",
         minHeight: 1000,
       }}>
