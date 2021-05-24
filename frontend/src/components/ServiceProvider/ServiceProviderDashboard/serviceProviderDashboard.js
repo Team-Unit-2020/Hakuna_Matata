@@ -15,11 +15,7 @@ export default function ServiceProviderDashboard() {
     <div
       style={{
         backgroundImage:
-<<<<<<< HEAD
-          "url(" + require("../../../assets/img/addPosts.png") + ")",
-=======
           "url(" + require("../../../assets/img/header.jpg") + ")",
->>>>>>> 9f478cc... background image fixed
         backgroundRepeat: "repeat-x",
         minHeight: 1000,
       }}
@@ -31,13 +27,6 @@ export default function ServiceProviderDashboard() {
         <br />
         <br />
         <br />
-<<<<<<< HEAD
-        <h2 className="welcome-msg" style ={{color: "black", backgroundColor:"rgba(255,255,255,0.9)"}}>Thank You Join With Us</h2> <br />
-        <br />
-        <br />
-        <div className="row">
-          <div className="col-lg-6 ml-auto mr-auto sm-6">
-=======
         <h2 className="welcome-msg">Thank You Join With Us</h2> <br />
         <br />
         <br />
@@ -51,7 +40,6 @@ export default function ServiceProviderDashboard() {
             </button>
           </div>
           <div className="col-lg-6 sm-6">
->>>>>>> 9f478cc... background image fixed
             <button
               className="btn btn-primary w-50 bold-font"
               onClick={() => onAddNewPostClick()}
