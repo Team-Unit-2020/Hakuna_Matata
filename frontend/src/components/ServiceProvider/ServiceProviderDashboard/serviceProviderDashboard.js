@@ -1,5 +1,6 @@
 import React from "react";
 import DashboardNav from "../../Navbars/DashboardNav";
+import HomePageNav from '../../Navbars/HomePageNav';
 import { useHistory, useLocation } from "react-router-dom";
 export default function ServiceProviderDashboard() {
   const history = useHistory();
@@ -15,31 +16,23 @@ export default function ServiceProviderDashboard() {
     <div
       style={{
         backgroundImage:
-          "url(" + require("../../../assets/img/header.jpg") + ")",
+          "url(" + require("../../../assets/img/addPosts.png") + ")",
         backgroundRepeat: "repeat-x",
         minHeight: 1000,
       }}
     >
-      <DashboardNav />
+      <DashboardNav transparent={true}/>
 
       <div className="dashboard-bg">
         <br />
         <br />
         <br />
         <br />
-        <h2 className="welcome-msg">Thank You Join With Us</h2> <br />
+        <h2 className="welcome-msg"  style ={{color: "black", backgroundColor:"rgba(255,255,255,0.9)"}}>Thank You Join With Us</h2> <br />
         <br />
         <br />
-        <div className="row mt-3">
-          <div className="col-lg-6 sm-6">
-            <button
-              className="btn btn-primary w-50 bold-font"
-              onClick={() => onCreateProfileClick()}
-            >
-              Create Your Profile
-            </button>
-          </div>
-          <div className="col-lg-6 sm-6">
+        <div className="row">
+          <div className="col-lg-6 ml-auto mr-auto sm-6">
             <button
               className="btn btn-primary w-50 bold-font"
               onClick={() => onAddNewPostClick()}
