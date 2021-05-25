@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserById } from '../../services/userService';
 import DashboardNav from '../Common/Navbars/DashboardNav';
 import Spinner from '../Spinner';
-import { Card, CardBody, CardHeader, Col, Container, Row, FormGroup, Input, InputGroupAddon, InputGroupText, Label } from 'reactstrap';
+import { searchByQuery } from '../../services/advertisementService'
+import { Card, CardBody, CardHeader, Col, Container, Row, FormGroup, Input, InputGroupAddon, InputGroupText, Label, CardFooter, Button } from 'reactstrap';
+import AdCard from '../Home/AdCard';
 
 export default function Dashboard() {
     const places = ["birthday", "wedding", "tobeparties", "gettogethers"];
@@ -16,15 +18,17 @@ export default function Dashboard() {
 
     const [eventType, setEventType] = useState("");
     const [guestCount, setGuestCount] = useState(0);
-    const [needOfCake, setNeedOfCake] = useState(true);
+    const [needOfCake, setNeedOfCake] = useState(false);
     const [vehicleType, setVehicleType] = useState("");
-    const [showMeDresses, setShowMeDresses] = useState(true);
-    const [showMeGifts, setShowMeGifts] = useState(true);
-    const [showMeDecoration, setShowMeDecoration] = useState(true);
-    const [showSoundAndLights, setShowSoundAndLights] = useState(true);
+    const [showMeDresses, setShowMeDresses] = useState(false);
+    const [showMeGifts, setShowMeGifts] = useState(false);
+    const [showMeDecoration, setShowMeDecoration] = useState(false);
+    const [showSoundAndLights, setShowSoundAndLights] = useState(false);
     const [location, setLocation] = useState("");
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [keywords, setKeywords] = useState([]);
+    const [allAds, setAllAds] = useState([]);
 
     useEffect(() => {
         var id = JSON.parse(localStorage.getItem("user")).id;
@@ -37,26 +41,62 @@ export default function Dashboard() {
     }, [])
 
     const handlePartyTypeChange = (event) => {
+        setKeywords([event.target.value])
         setEventType(event.target.value);
     }
     const handleGuestCountChange = (event) => {
         setGuestCount(event.target.value);
     }
     const handleNeedOfCake = (event) => {
+        if (needOfCake)
+            setKeywords([...keywords, "cake"])
+
         setNeedOfCake(!needOfCake);
     }
     const handleVehicleTypeChange = (event) => {
+        setKeywords([...keywords, "vehicle", event.target.value])
         setVehicleType(event.target.value);
     }
     const handleShowMeDresses = (event) => {
+        if (showMeDresses)
+            setKeywords([...keywords, "dress"])
         setShowMeDresses(!showMeDresses);
     }
     const handleShowMeGifts = (event) => {
-        setShowMeDresses(!setShowMeGifts);
+        if (setShowMeGifts)
+            setKeywords([...keywords, "gift", "gifts"])
+        setShowMeGifts(!setShowMeGifts);
     }
     const handleShowMeDecorations = (event) => {
+        if (showMeDecoration)
+            setKeywords([...keywords, "decos", "decoration"])
         setShowMeDecoration(!showMeDecoration);
     }
+
+    const handleLightsAndMusic = (event) => {
+        if (soundsAndLights)
+            setKeywords([...keywords, "music", "sounds", "lights", "audio", "visual"])
+        setShowSoundAndLights(!soundsAndLights);
+    }
+
+    const handleLocation = (event) => {
+        setLocation(event.target.value);
+    }
+
+    const search = async () => {
+        let params = {
+            location: location,
+            keywords: keywords ?? ""
+        }
+
+        let response = await searchByQuery(params);
+
+        setAllAds(response.favouriteAds);
+    }
+
+    useEffect(() => {
+        console.log(allAds)
+    }, [allAds])
 
     if (loading) {
         return (
@@ -64,7 +104,7 @@ export default function Dashboard() {
         )
     } else {
         return (
-            <div>
+            <div style={{ maxHeight: "auto"}}>
                 <DashboardNav user={user} />
                 <div className="page-header clear-filter" filter-color="blue">
                     <div
@@ -74,7 +114,7 @@ export default function Dashboard() {
                         }}
                     ></div>
 
-                    <Container>
+                    <Container >
                         <Row>
                             <Col md="4">
                                 <Card style={{ color: "black" }}>
@@ -102,8 +142,8 @@ export default function Dashboard() {
                                         <hr />
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Location</label>
-                                            <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" onChange={handleGuestCountChange} value={guestCount} />
-                                            <small id="emailHelp" class="form-text text-muted">Add approximate number of guests.</small>
+                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" onChange={handleLocation} value={location} />
+                                            <small id="emailHelp" class="form-text text-muted">Add your Location.</small>
                                         </div>
                                         <br />
                                         <div class="form-group">
@@ -116,7 +156,7 @@ export default function Dashboard() {
                                             <>
                                                 <FormGroup check>
                                                     <Label check>
-                                                        <Input defaultChecked type="checkbox" checked={needOfCake} onChange={handleNeedOfCake} />
+                                                        <Input type="checkbox" checked={needOfCake} onChange={handleNeedOfCake} />
                                                         <span className="form-check-sign"></span>
                                                 I need a  Cake
                                                     </Label>
@@ -154,7 +194,7 @@ export default function Dashboard() {
                                             <>
                                                 <FormGroup check>
                                                     <Label check>
-                                                        <Input defaultChecked type="checkbox" checked={showSoundAndLights} onChange={() => setShowSoundAndLights(!showSoundAndLights)} />
+                                                        <Input defaultChecked type="checkbox" checked={showSoundAndLights} onChange={handleLightsAndMusic} />
                                                         <span className="form-check-sign"></span>
                                             I need Sounds and Lights
                                                 </Label>
@@ -187,10 +227,17 @@ export default function Dashboard() {
                                             </select>
                                         </div>)}
                                     </CardBody>
+                                    <CardFooter>
+                                        <Button onClick={search} color="primary">Search</Button>
+                                    </CardFooter>
                                 </Card>
                             </Col>
                             <Col md="8">
-
+                                <Container>
+                                    {allAds.map((x) => (
+                                        <AdCard ad={x} id={x.id} />
+                                    ))}
+                                </Container>
                             </Col>
                         </Row>
                     </Container>

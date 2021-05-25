@@ -21,3 +21,6 @@ export const getFavouritesbyUser = (userId) =>
 
 export const removeFromFavourite = (userId, adId) =>
     sendRequest("get", `${appSettings.backendUrl}/service-provider/services/favourite/remove/user/${userId}/ad/${adId}`, null);
+
+export const searchByQuery = (params) =>
+    sendRequest("post", `${appSettings.backendUrl}/service-provider/services/searchByQuery`, params);

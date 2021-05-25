@@ -25,7 +25,7 @@ import moment from 'moment'
 import { signUpUser } from '../../services/userService';
 
 
-export default function Register() {
+export default function RegisterAsServiceSeeker() {
 
     const [lastFocus, setLastFocus] = useState(false);
     const [emailFocus, setEmailFocus] = useState(false);
@@ -59,7 +59,6 @@ export default function Register() {
     const handleAddressChange = (event) => setAddress(event.target.value);
     const handlePasswordChange = (event) => setPassword(event.target.value);
     const handleRePasswordChange = (event) => setReEnterPassword(event.target.value);
-    const handleUserTypeChange = (event) => {setUserType(event.currentTarget.value)};
 
     const registerUser = () => {
 
@@ -72,10 +71,10 @@ export default function Register() {
             phone: phone,
             address: address,
             password: password,
-            userType: userType
+            userType: "user"
         }
 
-        if (name && email && nic && phone && address && password && userType) {
+        if (name && email && nic && phone && address && password) {
             var pattEmail = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
             var pattMobile = new RegExp(/^(?:0|94|\+94|0094)?(?:(11|21|23|24|25|26|27|31|32|33|34|35|36|37|38|41|45|47|51|52|54|55|57|63|65|66|67|81|91)(0|2|3|4|5|7|9)|7(0|1|2|5|6|7|8)\d)\d{6}$/);
             setError("");
@@ -182,7 +181,7 @@ export default function Register() {
                             <Form action="" className="form" method="">
                                 <CardHeader className="text-center">
                                     <CardTitle className="title-up" tag="h3">
-                                        Sign Up
+                                        Sign Up as Service Seeker
                                     </CardTitle>
                                 </CardHeader>
                                 <CardBody>
@@ -340,35 +339,6 @@ export default function Register() {
                                             onChange={handleRePasswordChange}
                                         ></Input>
                                     </InputGroup>
-                                    <FormGroup check className="form-check-radio" >
-                                        <Label check>
-                                            <Input
-                                                defaultValue="option1"
-                                                id="exampleRadios1"
-                                                name="exampleRadios"
-                                                type="radio"
-                                                value={"user"}
-                                                onClick={handleUserTypeChange}
-                                            ></Input>
-                                            <span className="form-check-sign"></span>
-                                                I need a Service
-                                                </Label>
-                                        <Label check>
-                                            <Input
-                                                defaultValue="option1"
-                                                id="exampleRadios1"
-                                                name="exampleRadios"
-                                                type="radio"
-                                                value={"sprovider"}
-                                                onClick={handleUserTypeChange}
-                                            ></Input>
-                                            <span className="form-check-sign"></span>
-                                            I can provide a Service
-                                                </Label>
-                                    </FormGroup>
-                                    <FormGroup check className="form-check-radio">
-
-                                    </FormGroup>
                                 </CardBody>
                                 <CardFooter className="text-center">
                                     {pending ? (

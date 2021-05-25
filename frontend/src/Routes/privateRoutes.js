@@ -14,51 +14,61 @@ const GetPrivateRoutes = () => [
         path: "/dashboard",
         exact: true,
         component: Dashboard,
+        userType: "user"
     },
     {
         path: "/profile",
         exact: true,
         component: Profile,
+        userType: "user"
     },
     {
         path: "/order/:orderId",
         exact: true,
         component: OrderPage,
+        userType: "user"
     },
     {
         path: "/service-provider/profile",
         exact: true,
         component: ServiceProviderProfile,
+        userType: "sp"
     },
     {
         path: "/service-provider/dashboard",
         exact: true,
         component: ServiceProviderDashboard,
+        userType: "sp"
     },
     {
         path: "/service-provider/add-post",
         exact: true,
         component: ServiceProviderAddPost,
+        userType: "sp"
     },
     {
         path: "/favourites",
         exact: true,
         component: Favourites,
+        userType: "user"
     },
     {
         path: "/orders",
         exact: true,
         component: MyOrders,
+        userType: "user"
     },
     {
         path: "/payment/:orderId",
         exact: true,
         component: Payment,
+        userType: "user"
     },
     {
         path: "/payment_confirmation/:orderId",
         exact: true,
         component: PaymentConfirm,
+        userType: "user"
     }
 ]
 

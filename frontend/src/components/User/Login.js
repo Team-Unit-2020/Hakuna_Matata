@@ -78,7 +78,6 @@ export default function Login() {
     }
 
     const login = () => {
-        debugger;
         setPending(true);
         setError("");
         if (email && password) {
@@ -99,6 +98,7 @@ export default function Login() {
                     dispatch(setUserFromId(res.id));
                     localStorage.setItem("access_token", res.access_token);
                     localStorage.setItem("user", JSON.stringify(res.user));
+                    localStorage.setItem("userType", res.user.userType);
                     history.push("/");
                 }).catch(err => {
                     setError(err.message);

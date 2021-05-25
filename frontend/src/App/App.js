@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import ProtectedRouter from '../Routes/ProtectedRouter';
 import GetPrivateRoutes from '../Routes/privateRoutes'
@@ -24,7 +24,8 @@ function App() {
               />
             ))}
             {GetPrivateRoutes().map(route => (
-              <ProtectedRouter path={route.path} component={route.component}/>
+              <ProtectedRouter path={route.path}
+                userType={route.userType} component={route.component} />
             ))}
             <ProtectedRouter component={NotFound} />
           </Switch>
