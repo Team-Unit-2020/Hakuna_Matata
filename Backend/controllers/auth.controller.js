@@ -26,7 +26,8 @@ router.post('/new', async (req, res) => {
                 address: req.body.address,
                 password: hashedPassword,
                 dob: req.body.dob,
-                active: false
+                active: false,
+                usertype: req.body.userType
             })
 
             user.save((err) => {
@@ -193,7 +194,8 @@ router.post("/login", async (req, res, next) => {
                     phone: user.phone,
                     address: user.address,
                     dob: user.dob,
-                    active: user.active
+                    active: user.active,
+                    userType: user.usertype
                 };
 
                 return res.json({ status: 200, message: "User Successfully Authenticated", access_token: token, user: authenticatedUser });

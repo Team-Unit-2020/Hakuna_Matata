@@ -60,7 +60,7 @@ export default function HomePageNav() {
                                 href="#pablo"
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    history.push("/signup");
+                                    history.push("/service-seeker/signup");
                                 }}
                             >
                                 <i className="now-ui-icons users_single-02"></i>

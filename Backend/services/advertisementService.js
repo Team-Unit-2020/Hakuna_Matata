@@ -82,3 +82,31 @@ module.exports.removeFavourite = async (userId, adId) => {
 
     return true;
 }
+
+module.exports.getByQueries = async (query) => {
+
+    let allResults = [];
+    let keywordRegex = [];
+    // if (query.location) {
+    //     var results = await Advertisements.find({
+    //         "location.text": { $regex: new RegExp(query.location, "i") }
+    //     })
+
+    //     allResults = results;
+    // }
+
+    if (query.keywords) {
+        query.keywords.forEach(value => {
+            var v = value.replace(/\//ig, "");
+            keywordRegex.push(new RegExp(v, "i"))
+        })
+    }
+
+    var results = await Advertisements.find({
+        "keywords": { $in: keywordRegex },
+        "location.text": { $regex: new RegExp(query.location, "i") }
+    })
+    allResults = results;
+
+    return allResults;
+}
